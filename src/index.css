@@ -23,6 +23,15 @@
 }
 
 /* Default h1 */
-h1 {
-  @apply text-9xl text-midnight;
+.side-heading{
+  @apply flex justify-between
+}
+.nav-bar{
+  @apply bg-amber-600 p-3 flex justify-between
+}
+.side-bar{
+  @apply w-72 h-screen bg-blue-950 text-white p-3 left-0 top-0 fixed
+}
+.button.primary{
+  @apply bg-white w-fit h-fit text-black p-1.5 rounded-lg
 }

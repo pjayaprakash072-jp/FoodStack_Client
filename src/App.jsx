@@ -1,8 +1,9 @@
 
+import DashboardLayout from './components/Layout/DashboardLayout'
 const App = () => {
   return (
     <div>
-      <h1>Hello world</h1>
+      <DashboardLayout/>
     </div>
   )
 }
