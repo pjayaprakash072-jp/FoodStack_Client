@@ -30,8 +30,19 @@
   @apply bg-amber-600 p-3 flex justify-between
 }
 .side-bar{
-  @apply w-72 h-screen bg-blue-950 text-white p-3 left-0 top-0 fixed
+  @apply w-72 h-screen bg-blue-950 text-white p-3 left-0 top-0 fixed z-20
 }
+.side-bar-overlay{
+  @apply fixed inset-0 bg-black/30 z-10
+}
+/* fixed inset-0
+in normal css 
+posisiton:fixed;
+top:0;
+right:0;
+botton:0;
+left:0;
+that means entire screen. */
 .button.primary{
   @apply bg-white w-fit h-fit text-black p-1.5 rounded-lg
 }

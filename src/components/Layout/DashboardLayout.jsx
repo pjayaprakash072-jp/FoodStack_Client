@@ -7,7 +7,12 @@ const DashboardLayout = () => {
   return (
     <div>
         <Navbar onMenu={() => setOpen(true)}/>
-        { open && <Sidebar onClose={()=>setOpen(false)}/>}
+        { open && (
+            <>
+            <div className="side-bar-overlay" onClick={()=>setOpen(false)}></div>
+            <Sidebar onClose={()=>setOpen(false)}/>
+            </>
+        )}
     </div>
   )
 }
