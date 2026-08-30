@@ -3,16 +3,11 @@ import Navbar from "../Navbar/Navbar"
 import Sidebar from "../Sidebar/Sidebar"
 
 const DashboardLayout = () => {
-    const[open,setOpen]=useState(false)
+    const[open,setOpen]=useState(false);// open is just a state like it is used to set state(open/close) for sidebar.
   return (
     <div>
-        <Navbar onMenu={() => setOpen(true)}/>
-        { open && (
-            <>
-            <div className="side-bar-overlay" onClick={()=>setOpen(false)}></div>
-            <Sidebar onClose={()=>setOpen(false)}/>
-            </>
-        )}
+        <Navbar openSidebar={() => setOpen(true)}/>
+        <Sidebar open={open} CloseSidebar={()=>setOpen(false)}/>
     </div>
   )
 }

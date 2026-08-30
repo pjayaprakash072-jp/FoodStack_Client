@@ -1,14 +1,15 @@
 import { X } from "lucide-react"
-const Sidebar = ({onClose}) => {
-  return (
-    <div>
-        <div className="side-bar">
+const Sidebar = ({open,CloseSidebar}) => {
+  return ( // controling with css 
+    <>
+        <div className={`side-bar-overlay ${open ? "visible":"invisible"}`} onClick={CloseSidebar}/>  
+        <div className={`side-bar ${open ? "translate-x-0" : "-translate-x-full"}`}>
             <div className="side-heading">
-                <button className="button primary" onClick={onClose}><X size={18}/></button>
+                <button className="button primary" onClick={CloseSidebar}><X size={18}/></button>
                 <h1>Sidebar</h1>
             </div>
         </div>
-    </div>
+    </>
   )
 }
 

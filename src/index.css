@@ -30,10 +30,13 @@
   @apply bg-amber-600 p-3 flex justify-between
 }
 .side-bar{
-  @apply w-72 h-screen bg-blue-950 text-white p-3 left-0 top-0 fixed z-20
+  @apply fixed left-0 top-0 z-20 w-72 h-screen
+  bg-blue-950 text-white p-3 
+  transform transition-transform duration-300 ease-in-out
 }
 .side-bar-overlay{
-  @apply fixed inset-0 bg-black/30 z-10
+  @apply fixed inset-0 z-10 bg-black/30 
+  transition-opacity duration-300
 }
 /* fixed inset-0
 in normal css 
