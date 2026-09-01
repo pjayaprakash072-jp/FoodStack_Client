@@ -27,10 +27,10 @@
   @apply flex justify-between
 }
 .nav-bar{
-  @apply bg-amber-600 p-3 flex justify-between
+  @apply bg-amber-600 p-3 flex justify-between gap-1 md:gap-3
 }
 .side-bar{
-  @apply fixed left-0 top-0 z-20 w-72 h-screen
+  @apply fixed left-0 top-0 z-20 w-48 md:w-72 h-screen
   bg-blue-950 text-white p-3 
   transform transition-transform duration-300 ease-in-out
 }
@@ -46,6 +46,25 @@ right:0;
 botton:0;
 left:0;
 that means entire screen. */
-.button.primary{
-  @apply bg-white w-fit h-fit text-black p-1.5 rounded-lg
+
+.button{
+  @apply w-fit h-fit p-1 md:p-1.5 text-[12px] md:text-sm rounded-lg
+}
+.button.primary,
+.button.secondary
+{
+  @apply 
+  bg-white text-black
+  md:bg-transparent md:text-white
+  md:hover:bg-white md:hover:text-black 
+  transition-colors duration-300 ease-in-out
+}
+.nav-bar-auth{
+  @apply flex md:gap-3 gap-1
+}
+.search{
+  @apply  max-w-60 md:max-w-80 flex items-center bg-white rounded-xl px-3 gap-3 
+}
+.search input{
+  @apply border-0 px-4 bg-transparent outline-0 py-0 md:py-1.5 w-full text-[11px] md:text-sm
 }

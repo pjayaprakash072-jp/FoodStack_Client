@@ -5,8 +5,9 @@ const Sidebar = ({open,CloseSidebar}) => {
         <div className={`side-bar-overlay ${open ? "visible":"invisible"}`} onClick={CloseSidebar}/>  
         <div className={`side-bar ${open ? "translate-x-0" : "-translate-x-full"}`}>
             <div className="side-heading">
-                <button className="button primary" onClick={CloseSidebar}><X size={18}/></button>
+                <img src="/FS1.svg" alt="FS" width="25px" height="25px"/>
                 <h1>Sidebar</h1>
+                <button className="button primary" onClick={CloseSidebar}><X size={19}/></button>
             </div>
         </div>
     </>
