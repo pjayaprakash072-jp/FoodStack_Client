@@ -1,6 +1,7 @@
 import { Menu, LogOut, UserCircle } from "lucide-react";
 import SearchBar from "../Common/SearchBar";
 import { useAuth } from "../../context/useAuth";
+import { NavLink } from "react-router-dom";
 
 const Navbar = ({ openSidebar }) => {
   const { token, logout } = useAuth();
@@ -14,7 +15,7 @@ const Navbar = ({ openSidebar }) => {
           </button>
         ) : (
           <img 
-          src="/FS.svg" 
+          src="/FS1.svg" 
           />
         )}
       </div>
@@ -26,6 +27,7 @@ const Navbar = ({ openSidebar }) => {
         {token ? (
           <>
             <button className="nav-bar-right-button">
+              
               <UserCircle size={22} />
             </button>
             <button className="nav-bar-right-button button primary" 
@@ -35,8 +37,12 @@ const Navbar = ({ openSidebar }) => {
           </>
         ) : (
           <>
+          <NavLink to="/login">
             <button className="nav-bar-right-button button primary">Login</button>
+          </NavLink>
+          <NavLink to="/register">
             <button className="nav-bar-right-button button secondary">Register</button>
+          </NavLink>
           </>
         )}
       </div>

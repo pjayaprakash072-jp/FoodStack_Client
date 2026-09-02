@@ -21,7 +21,7 @@ const AppRoutes = () => {
     <Routes>
         <Route path="/" element={<Navigate to = "/dashboard" replace/>}/>
         <Route path="/login" element={<DashboardLayout><Login/></DashboardLayout>}/>
-        <Route path="/register" element={<Register/>}/>
+        <Route path="/register" element={<DashboardLayout><Register/></DashboardLayout>}/>
         <Route path="/Dashboard" element = {<Private><Dashboard/></Private>}/>
     </Routes>
   )

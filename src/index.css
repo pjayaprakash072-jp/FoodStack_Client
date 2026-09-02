@@ -39,7 +39,9 @@
   shrink-0
 }
 .nav-bar-left img{
-  @apply w-6 md:w-8 h-6 md:h-9
+  @apply w-8 md:w-8 
+  h-8 md:h-9
+
 }
 .nav-bar-search{
   @apply flex-1 flex justify-center
