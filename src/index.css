@@ -106,4 +106,42 @@ that means entire screen. */
   py-0.5 md:py-1.5 
   w-full 
 } 
+.main{
+  @apply 
+  w-auto
+  h-screen 
+  pt-14
+  bg-gray-300
+  flex
 
+}
+.form-page{
+  @apply flex-1 
+  bg-gray-200
+  flex
+  items-center
+  justify-center
+}
+.form-card{
+  @apply 
+  w-[85%]
+  h-[90%]
+  bg-amber-400
+
+  rounded-4xl
+  flex flex-col
+  items-center
+}
+.form-head{
+  @apply
+  bg-black
+  text-white
+  p-4
+}
+.form{
+  @apply 
+  w-1/2  
+  h-3/4
+  bg-red-500
+  rounded-4xl
+}

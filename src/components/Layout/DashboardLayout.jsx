@@ -8,7 +8,7 @@ const DashboardLayout = ({children}) => {
     <div>
         <Navbar openSidebar={() => setOpen(true)}/>
         <Sidebar open={open} CloseSidebar={()=>setOpen(false)}/>
-          <main className="pt-14 md:pt-16">
+          <main className="main">
             {children}
           </main>
     </div>
