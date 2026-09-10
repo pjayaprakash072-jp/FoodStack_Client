@@ -27,11 +27,12 @@
   @apply flex justify-between
 }
 .nav-bar{
-  @apply fixed top-0 left-0 right-0 z-10
+  @apply sticky top-0 left-0 right-0 z-10
   bg-amber-400 
   p-1.5 md:p-3
   flex items-center
   gap-1 md:gap-3
+  h-16
 }
 .nav-bar-left{
   @apply flex items-center
@@ -104,44 +105,17 @@ that means entire screen. */
   bg-transparent 
   outline-0 
   py-0.5 md:py-1.5 
-  w-full 
+  w-full
 } 
-.main{
-  @apply 
-  w-auto
-  h-screen 
-  pt-14
-  bg-gray-300
-  flex
-
+.content{
+  @apply w-screen
 }
-.form-page{
-  @apply flex-1 
-  bg-gray-200
-  flex
-  items-center
-  justify-center
+.page{
+  @apply w-full p-6 bg-red-500
 }
-.form-card{
-  @apply 
-  w-[85%]
-  h-[90%]
-  bg-amber-400
-
-  rounded-4xl
-  flex flex-col
-  items-center
+.auth-page{
+  @apply min-h-[clac(100vh-4rem)] bg-amber-300
 }
-.form-head{
-  @apply
-  bg-black
-  text-white
-  p-4
-}
-.form{
-  @apply 
-  w-1/2  
-  h-3/4
-  bg-red-500
-  rounded-4xl
+.auth-card{
+  @apply p-4
 }
