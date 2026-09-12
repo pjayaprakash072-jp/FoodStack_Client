@@ -16,6 +16,9 @@
     "Segoe UI",
     sans-serif;
 }
+.button{
+  cursor:pointer;
+}
 
 /* Global defaults */
 :root {
