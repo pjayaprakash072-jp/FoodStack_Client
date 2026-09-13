@@ -39,7 +39,8 @@
 }
 .nav-bar-left{
   @apply flex items-center
-  w-16 md:w-28
+  w-fit
+  p-1
   shrink-0
 }
 .nav-bar-left img{
@@ -52,14 +53,9 @@
 }
 .nav-bar-right{
   @apply flex items-center justify-end
-  gap-1 md:gap-2
-  w-28 md:w-40 
+  gap-2 md:gap-4
+  w-fit
   shrink-0;
-}
-.nav-bar-right-button{
-  @apply flex items-center justify-center
-  min-w-10 md:min-w-16 
-  h-8 md:h-9 
 }
 .side-bar{
   @apply fixed left-0 top-0 z-20 w-48 md:w-72 h-screen
@@ -70,29 +66,17 @@
   @apply fixed inset-0 z-10 bg-black/30 
   transition-opacity duration-300
 }
-/* fixed inset-0
-in normal css 
-posisiton:fixed;
-top:0;
-right:0;
-botton:0;
-left:0;
-that means entire screen. */
 
 .button{
-  @apply w-full 
+  @apply w-fit
   h-fit 
   p-1 md:p-1.5 
   text-[12px] md:text-sm 
   rounded-lg
-}
-.button.login{
-  @apply 
-  bg-white text-black
-  md:bg-transparent md:text-white
-  md:hover:bg-white md:hover:text-black 
+  bg-white md:bg-transparent
+  text-black
+  hover:bg-white hover:text-black
   transition-colors duration-300 ease-in-out
-
 }
 .button.primary
 {
@@ -104,13 +88,17 @@ that means entire screen. */
   @apply 
   bg-slate-200 hover:bg-slate-500 text-black
 }
+.submitbtn{
+  @apply w-full py-3
+}
 .search{
-  @apply  
-  max-w-60 md:max-w-80 
+  @apply 
+  w-full md:w-111
   flex items-center 
   bg-white 
   rounded-xl 
-  px-3 gap-3 
+  px-3 py-2 md:py-1
+  gap-3 
 }
 .search input{
   @apply 
@@ -153,9 +141,12 @@ that means entire screen. */
 .form{
   @apply grid gap-4
 }
-/* .grid-2{
-  @apply grid-cols-2 
-} */
+.grid-2{
+  @apply grid-cols-2
+}
+.grid-span-2{
+  @apply col-span-2
+}
 .form label{
   @apply grid
   gap-2 font-bold

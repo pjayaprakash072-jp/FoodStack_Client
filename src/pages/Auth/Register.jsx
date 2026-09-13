@@ -80,7 +80,7 @@ const submit = async (e)=>{
               onChange={update}
               />
             </label>
-            <button className="button primary" type="submit" disabled={busy} >{busy?"Creating...":"Create Account"}</button>
+            <button className="button primary submitbtn grid-span-2" type="submit" disabled={busy} >{busy?"Creating...":"Create Account"}</button>
           </form>
           <p>
             Already registered? <Link to="/login">Login</Link>

@@ -28,9 +28,9 @@ const Navbar = ({ openSidebar }) => {
           <>
             <button className="nav-bar-right-button">
               
-              <UserCircle size={22} />
+              <UserCircle size={30}/>
             </button>
-            <button className="nav-bar-right-button button primary" 
+            <button className="button primary" 
             onClick={logout}>
               <LogOut size={19} />
             </button>
@@ -38,10 +38,10 @@ const Navbar = ({ openSidebar }) => {
         ) : (
           <>
           <NavLink to="/login">
-            <button className="nav-bar-right-button button login">Login</button>
+            <button className=" button">Login</button>
           </NavLink>
           <NavLink to="/register">
-            <button className="nav-bar-right-button button login">Register</button>
+            <button className=" button">Register</button>
           </NavLink>
           </>
         )}

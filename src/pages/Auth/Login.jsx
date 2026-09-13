@@ -63,7 +63,7 @@ const Login = () => {
               onChange={change}
               />
             </label>
-            <button className="button primary" type="submit">{busy? "Logging In":"Login"}</button>
+            <button className="button primary submitbtn" type="submit">{busy? "Login...":"Login"}</button>
           </form>
         </div>
       </div>
