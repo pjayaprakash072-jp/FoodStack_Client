@@ -46,7 +46,10 @@ const Login = () => {
           {error && <div className="error">{error}</div>}
           <form className="form" onSubmit={handleSubmit}>
             <label>
-              Email 
+              <div className="label-e">
+                <h1>Email</h1>
+                <p>abc</p>
+              </div>
               <input 
               type="Email"
               name="email"
