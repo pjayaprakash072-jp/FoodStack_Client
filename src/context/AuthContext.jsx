@@ -23,8 +23,8 @@ export function AuthProvider({children}){
         }else{
             throw new Error("No token is received from the server");
         }
-        if(result.customer){
-            updateUser(result.customer)
+        if(result.user){
+            updateUser(result.user)
         }
         return result;
     }
