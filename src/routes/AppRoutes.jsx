@@ -19,7 +19,8 @@ function Private({children}){
 const AppRoutes = () => {
   return (
     <Routes>
-        <Route path="/" element={<Navigate to = "/dashboard" replace/>}/>
+        {/* <Route path="/" element={<Navigate to = "/dashboard" replace/>}/> */}
+        <Route path="/" element={<DashboardLayout><Dashboard/></DashboardLayout>}/>
         <Route path="/login" element={<DashboardLayout><Login/></DashboardLayout>}/>
         <Route path="/register" element={<DashboardLayout><Register/></DashboardLayout>}/>
         <Route path="/Dashboard" element = {<Private><Dashboard/></Private>}/>

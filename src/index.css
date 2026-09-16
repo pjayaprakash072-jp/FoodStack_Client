@@ -111,11 +111,11 @@
   w-full
 }
 .content{
-  @apply w-screen 
+  @apply w-screen min-h-[calc(100vh-4rem)] 
   flex
 }
 .auth-page{
-  @apply w-full min-h-[calc(100vh-4rem)]
+  @apply w-full
   flex-1 bg-white
   grid
   place-items-center

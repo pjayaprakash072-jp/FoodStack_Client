@@ -14,9 +14,11 @@ const Navbar = ({ openSidebar }) => {
             <Menu size={19} />
           </button>
         ) : (
-          <img 
-          src="/FS1.svg" 
-          />
+          <NavLink to="/">
+            <img 
+            src="/FS1.svg" 
+            />
+          </NavLink>
         )}
       </div>
       <div className="nav-bar-search">
