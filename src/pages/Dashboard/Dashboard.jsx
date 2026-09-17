@@ -2,9 +2,12 @@
 import { ShoppingBag,ArrowRight,UtensilsCrossed } from 'lucide-react';
 import SearchBar from './../../components/Common/SearchBar';
 import OutletList from '../Outlet/OutletList';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
 const Dashboard = () => {
+  const [search,setSearch] = useState("");
   return (
-    <div>
+    <div className='section'>
       <section className="hero">
         <div className="hero-content">
           <span className="eyebrow">FoodStack Delivery</span>
@@ -16,10 +19,17 @@ const Dashboard = () => {
             Discover Outlets, explore menus, and get delicious meals delivered to your door.
           </p>
           <div className="hero-search">
-            <SearchBar/>
+            <SearchBar
+            value={search}
+            onChange={setSearch}
+            placeholder="Search Outlets"
+            />
+            <Link to={`/outlets${search? `?search=${encodeURIComponent(search)}`:""}`} >Search</Link>
           </div>
           <div className="hero-actions">
-            <ArrowRight/>
+            <Link className="button primary" to="/outlets">
+            Explore more<ArrowRight/>
+            </Link>
             <ShoppingBag/>
           </div>
         </div>
@@ -36,7 +46,7 @@ const Dashboard = () => {
             <span className="eyebrow">Discover</span>
             <h2>Popular Outlets</h2>
           </div>
-            <div>View all outlets <ArrowRight/></div>
+            <Link to="/outlets">View all<ArrowRight/></Link>
         </div>
         <OutletList compact/>
       </section>

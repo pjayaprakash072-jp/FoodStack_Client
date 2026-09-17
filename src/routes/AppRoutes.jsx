@@ -4,6 +4,7 @@ import { useAuth } from './../context/useAuth';
 import DashboardLayout from './../components/Layout/DashboardLayout';
 import Login from "../pages/Auth/Login.jsx";
 import Register from "../pages/Auth/Register.jsx";
+import OutletList from "../pages/Outlet/OutletList.jsx";
 
 
 function Private({children}){
@@ -24,6 +25,8 @@ const AppRoutes = () => {
         <Route path="/login" element={<DashboardLayout><Login/></DashboardLayout>}/>
         <Route path="/register" element={<DashboardLayout><Register/></DashboardLayout>}/>
         <Route path="/Dashboard" element = {<Private><Dashboard/></Private>}/>
+        <Route path="/outlets" element={<DashboardLayout><OutletList/></DashboardLayout>}/>
+
     </Routes>
   )
 }
