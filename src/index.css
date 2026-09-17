@@ -22,7 +22,8 @@
 
 /* Global defaults */
 :root {
-  @apply font-inter;
+  @apply font-inter
+  bg-[#fffaf6]
 }
 
 /* Default h1 */
@@ -162,4 +163,83 @@
   rounded-xl
   ring-1
   focus:ring-2 focus:ring-black
+}
+
+
+.hero{
+  @apply max-w-295 
+  mx-auto
+  pt-5
+  px-5.5
+  pb-16.25
+  grid
+  grid-cols-[1.25fr_0.75fr]
+  gap-10
+  items-center
+}
+.eyebrow{
+  @apply text-[12px]
+  tracking-[2px]
+  font-extrabold
+}
+.hero h1{
+  @apply text-[62px]
+  leading-[1.02]
+  tracking-[-3px]
+  my-3.5
+}
+.hero h1 em{
+  @apply not-italic 
+}
+.hero p{
+  @apply text-[18px]
+  leading-[1.7]
+  max-w-152.5
+}
+.hero-actions{
+  @apply flex gap-3 
+  mt-4.5
+
+}
+.hero-art{
+  @apply h-90 
+  rounded-3xl
+  bg-amber-200
+  text-orange-500
+  grid
+  place-items-center
+  relative
+}
+.hero-art span{
+  @apply absolute
+  text-[48px]
+}
+.hero-art span:nth-child(2){
+  @apply left-11
+  top-11
+}
+.hero-art span:nth-child(3){
+  @apply bottom-11.25
+}
+.hero-art span:nth-child(4){
+  @apply top-25
+  right-11
+}
+.hero-search{
+  @apply border-2 border-black rounded-xl
+}
+
+.section{
+  @apply max-w-295
+  mx-auto
+  px-5.5
+  py-13.5 bg-red-500
+}
+
+.section-heading{
+  @apply flex
+  items-end
+  justify-between
+  gap-5
+  mb-6.25
 }
