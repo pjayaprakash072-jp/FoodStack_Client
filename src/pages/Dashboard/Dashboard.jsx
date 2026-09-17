@@ -1,6 +1,7 @@
 
 import { ShoppingBag,ArrowRight,UtensilsCrossed } from 'lucide-react';
 import SearchBar from './../../components/Common/SearchBar';
+import OutletList from '../Outlet/OutletList';
 const Dashboard = () => {
   return (
     <div>
@@ -37,6 +38,7 @@ const Dashboard = () => {
           </div>
             <div>View all outlets <ArrowRight/></div>
         </div>
+        <OutletList compact/>
       </section>
     </div>
   )
