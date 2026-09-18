@@ -40,7 +40,7 @@ const Navbar = ({ openSidebar }) => {
           </>
         ) : (
           <>
-          <NavLink to="/login">
+          <NavLink to="/log">
             <button className=" button">Login</button>
           </NavLink>
           <NavLink to="/register">

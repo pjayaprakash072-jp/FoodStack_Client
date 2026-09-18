@@ -469,3 +469,14 @@
   mb-1.25
 }
 
+/* NOTFOUND */
+.not-found{
+  @apply 
+  text-[100px]
+  font-black
+  text-[#ff6b35]
+  tracking-[-8px]
+}
+.center{
+  @apply text-center
+}
