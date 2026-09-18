@@ -20,7 +20,7 @@ const CartItem = ({item}) => {
                 <Plus size={15}/>
             </button>
         </div>
-        <strong>{price * item.quantity}</strong>
+        <strong>₹{price * item.quantity}</strong>
         <button className="icon-btn danger" onClick={()=>removeItem(id)}>
             <Trash2 size={17}/>
         </button>

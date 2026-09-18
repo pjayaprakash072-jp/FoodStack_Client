@@ -29,7 +29,7 @@ const Navbar = ({ openSidebar }) => {
 
       <div className="nav-bar-right">
         <NavLink to="/outlets">Outlets</NavLink>
-        <NavLink to="/cart">
+        <NavLink to="/cart" className="cart-link">
         <ShoppingBag size={19}/> Cart 
         {
           totalItems >0 && <b>{totalItems}</b>

@@ -30,7 +30,7 @@ const Cart = () => {
                 <h1>Cart</h1>
             </div>
         </div>
-        <div className="card-layout">
+        <div className="cart-layout">
             <div>
                 {
                     items.map(
@@ -50,13 +50,16 @@ const Cart = () => {
                     <span>Delivery fee</span>
                     <b>{delivery.toFixed(2)}</b>
                 </div>
+                <hr />
                 <div>
-                    <span>Total</span>
+                    <span className='total'>Total</span>
                     <b>{total.toFixed(2)}</b>
                 </div>
-                <Link className="button primary" to="/checkout">
+                <button className="button primary full">
+                    <Link  to="/checkout" className='link'>
                 Proceed to checkout <ArrowRight size={17}/>
                 </Link>
+                </button>
             </aside>
         </div>
     </section>
