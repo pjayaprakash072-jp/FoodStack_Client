@@ -1,5 +1,5 @@
 import { Menu, LogOut, UserCircle } from "lucide-react";
-import SearchBar from "../Common/SearchBar";
+// import SearchBar from "../Common/SearchBar";
 import { useAuth } from "../../context/useAuth";
 import { NavLink } from "react-router-dom";
 
@@ -22,10 +22,11 @@ const Navbar = ({ openSidebar }) => {
         )}
       </div>
       <div className="nav-bar-search">
-        <SearchBar />
+        {/* <SearchBar /> */} <h1>FoodStack</h1>
       </div>
 
       <div className="nav-bar-right">
+        <NavLink to="/outlets">Outlets</NavLink>
         {token ? (
           <>
             <button className="nav-bar-right-button">

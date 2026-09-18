@@ -52,6 +52,11 @@
 .nav-bar-search{
   @apply flex-1 flex justify-center
 }
+.nav-bar-search h1{
+  @apply font-extrabold
+  text-5xl
+  tracking-[15px]
+}
 .nav-bar-right{
   @apply flex items-center justify-end
   gap-2 md:gap-4
@@ -69,7 +74,9 @@
 }
 
 .button{
-  @apply flex gap-2 items-center
+  @apply flex 
+  gap-2 
+  items-center justify-center
   w-fit
   h-fit 
   p-1 md:p-1.5 
@@ -261,6 +268,8 @@
 .section > h1{
   @apply my-1.75 
   tracking-normal
+  text-3xl
+  font-bold
 }
 .section-heading >a{
   @apply flex
@@ -269,7 +278,8 @@
   font-[750]
 }
 .outlet-grid{
-  @apply grid
+  @apply mt-4
+  grid
   grid-cols-4
   gap-4
 }
@@ -282,6 +292,9 @@
   overflow-hidden
   transition-all
   duration-200
+}
+.outlet-card:hover{
+  @apply -translate-y-1
 }
 .outlet-card >img, .image-placeholder{
   @apply w-full
@@ -344,4 +357,52 @@
   border-t-[#ff6b35]
   rounded-full
   animate-spin
+}
+
+/* OUTLET-DETAILS */
+.back-link{
+  @apply inline-flex
+  items-center
+  gap-1.5
+  font-bold
+  text-[#ff6b35]
+}
+.outlet-detail{
+  @apply mt-7
+  bg-white
+  border
+  border-slate-900
+  rounded-2xl
+  p-5
+  grid
+  grid-cols-2
+  gap-8
+  items-center
+}
+.outlet-detail img,.detail-placeholder{
+  @apply w-full
+  h-90 
+  rounded-2xl
+  object-cover
+}
+.outlet-detail h1{
+  @apply text-2xl
+  tracking-[-2px]
+  my-2
+}
+.outlet-detail p{
+  @apply
+  text-slate-800
+  leading-[1.7]
+}
+.detail-meta{
+  @apply flex
+  flex-wrap
+  my-5
+  gap-2
+  text-slate-700
+}
+.detail-meta span{
+  @apply flex items-center
+  gap-0.5
 }

@@ -5,6 +5,7 @@ import DashboardLayout from './../components/Layout/DashboardLayout';
 import Login from "../pages/Auth/Login.jsx";
 import Register from "../pages/Auth/Register.jsx";
 import OutletList from "../pages/Outlet/OutletList.jsx";
+import OutletDetails from "../pages/Outlet/OutletDetails.jsx";
 
 
 function Private({children}){
@@ -26,6 +27,7 @@ const AppRoutes = () => {
         <Route path="/register" element={<DashboardLayout><Register/></DashboardLayout>}/>
         <Route path="/Dashboard" element = {<Private><Dashboard/></Private>}/>
         <Route path="/outlets" element={<DashboardLayout><OutletList/></DashboardLayout>}/>
+        <Route path="/outlet/:id" element={<DashboardLayout><OutletDetails/></DashboardLayout>}/>
 
     </Routes>
   )

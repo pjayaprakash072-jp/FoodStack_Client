@@ -2,7 +2,7 @@ import { Clock3, Star } from "lucide-react"
 import { Link } from "react-router-dom"
 
 const OutletCard = ({outlet}) => {
-    const id = outlet.id
+    const id = outlet._id
     const image = outlet.image?.url
   return (
     <Link className="outlet-card" to={`/outlet/${id}`}>
