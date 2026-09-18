@@ -1,9 +1,9 @@
-import { createContext, useEffect, useMemo, useState ,useContext} from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 
 
 
 
-const CartContext = createContext(null);
+export const CartContext = createContext(null);
 
 export const CartProvider = ({children})=>{
     const [items,setItems] = useState(()=>{
@@ -52,6 +52,26 @@ export const CartProvider = ({children})=>{
 //  ↓               ↓
 // quantity + 1    quantity: 1
 
+const updateQuantity = (id,quantity)=>{
+    if(quantity <=0) return removeItem(id);
+    setItems(
+        (current)=>{
+            current.map(
+                (x)=>(
+                    x._id === id ? {...x , quantity} :x
+                )
+            )
+        }
+    )
+}
+const removeItem =(id)=>{
+    setItems(
+        (current)=> current.filter( (x)=> x._id !== id)
+    )
+}
+const clearCart = ()=>{
+    setItems([]);
+}
 // TOTAL ITEMS
     const totalItems = items.reduce((sum,item)=>sum+item.quantity, 0)
     const subtotal = items.reduce(
@@ -63,7 +83,7 @@ export const CartProvider = ({children})=>{
 
     const value = useMemo(
         ()=>({
-            items,addItem,totalItems,subtotal
+            items,addItem,updateQuantity,removeItem,clearCart,totalItems,subtotal
         }),
         [items,totalItems,subtotal]
     )
@@ -71,6 +91,3 @@ export const CartProvider = ({children})=>{
 }
 
 
-export const useCart =()=>{
-    return useContext(CartContext)
-}
