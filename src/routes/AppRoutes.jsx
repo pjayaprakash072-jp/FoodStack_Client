@@ -6,6 +6,7 @@ import Login from "../pages/Auth/Login.jsx";
 import Register from "../pages/Auth/Register.jsx";
 import OutletList from "../pages/Outlet/OutletList.jsx";
 import OutletDetails from "../pages/Outlet/OutletDetails.jsx";
+import Menu from "../pages/Menu/Menu.jsx";
 
 
 function Private({children}){
@@ -28,6 +29,7 @@ const AppRoutes = () => {
         <Route path="/Dashboard" element = {<Private><Dashboard/></Private>}/>
         <Route path="/outlets" element={<DashboardLayout><OutletList/></DashboardLayout>}/>
         <Route path="/outlet/:id" element={<DashboardLayout><OutletDetails/></DashboardLayout>}/>
+        <Route path="/menu/:outletId" element={<DashboardLayout><Menu/></DashboardLayout>}/>
 
     </Routes>
   )

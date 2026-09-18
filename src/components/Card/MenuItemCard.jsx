@@ -8,7 +8,7 @@ const MenuItemCard = ({menuItem}) => {
             <h3>{menuItem.name || "Menu Item"}</h3>
             <strong>{menuItem.price}</strong>
             <p>{menuItem.description || "Freshly prepared and served with care."}</p>
-            <button className="button">
+            <button className="add-btn">
                 <Plus size={16}/>
                 Add
             </button>

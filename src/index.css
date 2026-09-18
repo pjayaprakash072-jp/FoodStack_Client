@@ -406,3 +406,66 @@
   @apply flex items-center
   gap-0.5
 }
+
+/* MENUITEM-CARD */
+.menuItem-card{
+  @apply 
+  grid
+  grid-cols-[1fr_120px]
+  gap-4
+  bg-white
+  border
+  border-[#eee4dc]
+  rounded-xl
+  p-3.5
+}
+.menuItem-card h3{
+  @apply my-0.75
+  mb-1.75
+  font-bold
+}
+.menuItem-card p{
+  @apply text-slate-600
+  text-[13px]
+  py-3
+}
+.menuItem-card img,
+.food-placeholder{
+  @apply
+  w-30
+  h-30
+  rounded-2xl
+  object-cover
+}
+.menuItem-grid{
+  @apply
+  grid
+  grid-cols-2
+  gap-4
+}
+
+.add-btn{
+  @apply inline-flex
+  items-center
+  border
+  border-orange-500
+  bg-white
+  text-orange-700
+  rounded-xl
+  px-3
+  py-2
+  font-extrabold
+  cursor-pointer
+}
+.empty-state{
+  @apply 
+  text-center
+  px-5
+  py-11 
+  text-slate-600
+}
+.empty-state h3{
+  @apply text-slate-500
+  mb-1.25
+}
+
