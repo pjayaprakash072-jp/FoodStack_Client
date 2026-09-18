@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams,Link} from "react-router-dom"
-import outletService from "../../../../Frontend/src/services/outletService";
+import outletService from "../../services/outletService";
 import { getErrorMessage } from "../../utils/api";
 import Loader from "../../components/Common/Loader";
 import { ArrowLeft, Clock3, MapPin, Star } from "lucide-react";
