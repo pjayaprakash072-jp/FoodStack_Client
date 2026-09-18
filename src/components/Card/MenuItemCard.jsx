@@ -1,6 +1,8 @@
 import { Plus } from "lucide-react"
+import { useCart } from "../../context/useCart"
 
 const MenuItemCard = ({menuItem}) => {
+    const {addItem} = useCart();
     const image = menuItem.image?.url
   return (
     <article className="menuItem-card">
@@ -8,7 +10,7 @@ const MenuItemCard = ({menuItem}) => {
             <h3>{menuItem.name || "Menu Item"}</h3>
             <strong>{menuItem.price}</strong>
             <p>{menuItem.description || "Freshly prepared and served with care."}</p>
-            <button className="add-btn">
+            <button className="add-btn" onClick={()=>addItem(menuItem)}>
                 <Plus size={16}/>
                 Add
             </button>

@@ -55,13 +55,13 @@ export const CartProvider = ({children})=>{
 const updateQuantity = (id,quantity)=>{
     if(quantity <=0) return removeItem(id);
     setItems(
-        (current)=>{
+        (current)=>(
             current.map(
                 (x)=>(
                     x._id === id ? {...x , quantity} :x
                 )
             )
-        }
+        )
     )
 }
 const removeItem =(id)=>{

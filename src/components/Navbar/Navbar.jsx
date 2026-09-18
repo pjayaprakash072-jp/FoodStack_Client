@@ -1,10 +1,12 @@
-import { Menu, LogOut, UserCircle } from "lucide-react";
+import { Menu, LogOut, UserCircle, ShoppingBag } from "lucide-react";
 // import SearchBar from "../Common/SearchBar";
 import { useAuth } from "../../context/useAuth";
 import { NavLink } from "react-router-dom";
+import { useCart } from "../../context/useCart";
 
 const Navbar = ({ openSidebar }) => {
   const { token, logout } = useAuth();
+  const {totalItems} = useCart();
 
   return (
     <div className="nav-bar">
@@ -27,6 +29,12 @@ const Navbar = ({ openSidebar }) => {
 
       <div className="nav-bar-right">
         <NavLink to="/outlets">Outlets</NavLink>
+        <NavLink to="/cart">
+        <ShoppingBag size={19}/> Cart 
+        {
+          totalItems >0 && <b>{totalItems}</b>
+        }
+        </NavLink>
         {token ? (
           <>
             <button className="nav-bar-right-button">
