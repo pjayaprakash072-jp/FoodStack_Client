@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useState } from "react"
-import addressService from './../../services/addressService';
+import addressService from '../../services/addressService';
 import { getErrorMessage } from "../../utils/api";
 import { Link } from "react-router-dom";
-import EmptyState from './../../components/Common/EmptyState';
-import { Loader } from "lucide-react";
+import EmptyState from '../../components/Common/EmptyState';
+import Loader from "../../components/Common/Loader";
 const Addresses = () => {
     const [items,setItems] = useState([]);
     const [busy,setBusy] = useState(true);
@@ -38,7 +38,7 @@ const Addresses = () => {
                 <span className="eyebrow">PROFILE</span>
                 <h1>Addresses</h1>
             </div>
-            <Link className="button primary">
+            <Link className="button primary" to="/profile/addaddress">
             Add
             </Link>
         </div>
