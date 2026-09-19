@@ -38,8 +38,9 @@ const Navbar = ({ openSidebar }) => {
         {token ? (
           <>
             <button className="nav-bar-right-button">
-              
+              <NavLink to="/profile">
               <UserCircle size={30}/>
+              </NavLink>
             </button>
             <button className="button primary" 
             onClick={logout}>

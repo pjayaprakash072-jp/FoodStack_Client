@@ -9,6 +9,7 @@ import OutletDetails from "../pages/Outlet/OutletDetails.jsx";
 import Menu from "../pages/Menu/Menu.jsx";
 import NotFound from "../pages/NotFound/NotFound.jsx";
 import Cart from "../pages/Cart/Cart.jsx";
+import Profile from "../pages/Profile/Profile.jsx";
 
 
 function Private({children}){
@@ -33,6 +34,7 @@ const AppRoutes = () => {
         <Route path="/outlet/:id" element={<DashboardLayout><OutletDetails/></DashboardLayout>}/>
         <Route path="/menu/:outletId" element={<DashboardLayout><Menu/></DashboardLayout>}/>\
         <Route path="/cart" element = {<DashboardLayout><Cart/></DashboardLayout>}/>
+        <Route path="/profile" element={<Private><Profile/></Private>}/>
         <Route path="*" element={<DashboardLayout><NotFound/></DashboardLayout>}/>
     </Routes>
   )

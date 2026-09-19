@@ -125,7 +125,7 @@
 }
 .auth-page{
   @apply w-full
-  flex-1 bg-white
+  flex-1 
   grid
   place-items-center
   p-6
@@ -250,7 +250,7 @@
 }
 
 .section{
-  @apply max-w-295
+  @apply max-w-295 md:min-w-295
   mx-auto
   px-5.5
   py-13.5
@@ -523,7 +523,7 @@
   p-4
 }
 .cart-item h3{
-  @apply m-0 pr-111
+  @apply m-0
   mb-1
 }
 .cart-item p{
@@ -586,4 +586,63 @@
   @apply flex 
   items-center
   gap-4
+}
+
+/* PROFILE STYLES */
+.profile-card{
+  @apply bg-white
+  border
+  border-[#eee4dc]
+  rounded-2xl
+  p-5
+  my-3
+}
+.profile-card{
+  @apply flex
+  items-center
+  gap-4
+}
+.avatar{
+  @apply w-20
+  h-20
+  rounded-full
+  bg-[#ffe1d2]
+  text-[#ff6b35]
+  grid
+  place-items-center
+  text-[22px]
+  font-black
+}
+
+.profile-card >div:nth-child(2){
+  @apply flex-1
+}
+.profile-card h2{
+  @apply m-0
+}
+.profile-card p{
+  @apply my-1 
+  text-slate-500
+}
+.profile-links{
+  @apply 
+  bg-white
+  border
+  border-[#eee4dc]
+  rounded-2xl
+  overflow-hidden
+}
+.profile-links a{
+  @apply flex
+  items-center
+  gap-3
+  p-4.5
+  border-b
+  border-orange-100
+}
+.profile-links a:last-child{
+  @apply border-0
+}
+.profile-links svg:last-child{
+  @apply ml-auto
 }
