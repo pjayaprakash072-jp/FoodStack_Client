@@ -13,6 +13,7 @@ import Profile from "../pages/Profile/Profile.jsx";
 import Addresses from "../pages/Address/Addresses.jsx";
 import AddAddress from "../pages/Address/AddAddress.jsx";
 import Checkout from "../pages/Checkout/Checkout.jsx";
+import SelectAdderss from "../pages/Checkout/SelectAdderss.jsx";
 
 
 function Private({children}){
@@ -41,6 +42,7 @@ const AppRoutes = () => {
         <Route path="/checkout" element={<Private><Checkout/></Private>}/>
         <Route path="/profile/addresses" element={<Private><Addresses/></Private>}/>
         <Route path="/profile/addaddress" element={<DashboardLayout><AddAddress/></DashboardLayout>}/>
+        <Route path="/checkout/address" element={<DashboardLayout><SelectAdderss/></DashboardLayout>}/>
         <Route path="*" element={<DashboardLayout><NotFound/></DashboardLayout>}/>
     </Routes>
   )

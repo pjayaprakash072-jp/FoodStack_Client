@@ -1,8 +1,6 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 
 
-
-
 export const CartContext = createContext(null);
 
 export const CartProvider = ({children})=>{

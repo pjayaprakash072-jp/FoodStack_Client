@@ -5,6 +5,7 @@ import { getErrorMessage } from "../../utils/api";
 import { Link } from "react-router-dom";
 import EmptyState from '../../components/Common/EmptyState';
 import Loader from "../../components/Common/Loader";
+import AddressCard from "../../components/Card/AddressCard";
 const Addresses = () => {
     const [items,setItems] = useState([]);
     const [busy,setBusy] = useState(true);
@@ -47,32 +48,7 @@ const Addresses = () => {
             items.length ?(
                 items.map(
                     (a)=>(
-                        <div className="address-card" key={a._id}>
-                            <div className="row-between">
-                                <b>{a.label || "Address"}</b>
-                                {
-                                    a.isDefault && (
-                                        <span className="default-badge">Default</span>
-                                    )
-                                }
-                                <button className="button danger" onClick={()=>remove(a._id)}>
-                                    Delete
-                                </button>
-                            </div>
-                            <div className="address-person">
-                                <strong>{a.fullName}</strong>
-                                <span>{a.phone}</span>
-                            </div>
-                            <div className="address-details">
-                                <p>{a.addressLine1}</p>
-                                {
-                                    a.addressLine2 && (
-                                        <p>{a.addressLine2}</p>
-                                    )
-                                }
-                                <p>{a.city},{a.state},{a.pincode}</p>
-                            </div>
-                        </div>
+                        <AddressCard key={a._id} a = {a} remove= {remove}/>
                     )
                 )
             ):(
