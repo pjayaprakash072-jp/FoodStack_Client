@@ -55,7 +55,7 @@ const Addresses = () => {
                                         <span className="default-badge">Default</span>
                                     )
                                 }
-                                <button className="button text-danger" onClick={()=>remove(a._id)}>
+                                <button className="button danger" onClick={()=>remove(a._id)}>
                                     Delete
                                 </button>
                             </div>

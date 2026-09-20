@@ -93,6 +93,9 @@
   bg-slate-900 hover:bg-slate-700
   text-white
 }
+.button.danger{
+  @apply bg-red-100 text-red-700
+}
 .button.secondary{
   @apply 
   bg-slate-200 hover:bg-slate-500 text-black
@@ -589,6 +592,7 @@
 }
 
 /* PROFILE STYLES */
+.address-card,
 .profile-card{
   @apply bg-white
   border
@@ -645,4 +649,18 @@
 }
 .profile-links svg:last-child{
   @apply ml-auto
+}
+
+/* ADDRESS -CARD */
+.address-card p{
+  @apply text-slate-700
+}
+.address-person{
+  @apply flex justify-start gap-4
+}
+.default-badge{
+  @apply bg-green-400
+  px-2 py-1 
+  rounded-2xl
+
 }
