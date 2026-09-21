@@ -1,18 +1,20 @@
 import { CreditCard, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../context/useCart'
+import useCheckout from './../../context/useCheckout';
 const Checkout = () => {
     const {subtotal} = useCart();
-  return (
+    const {selectedAddress} = useCheckout();
+    return (
     <section className="section">
         <span className="eyebrow">CHECKOUT</span>
         <h1>complete your order</h1>
         <div className="checkout-cards">
-            <Link to="/checkout/address" className="choice-card">
+            <Link to="/profile/addresses?form=checkout" className="choice-card">
             <MapPin/>
             <div>
                 <h3>Delivery address</h3>
-                <p>Choose where your order should be delivered</p>
+                <p>{ selectedAddress? `Delivery address Selected!`:"Choose where your order should be delivered"}</p>
             </div>
             </Link>
             <Link to="/checkout/payment" className="choice-card">
