@@ -5,9 +5,7 @@ import { useCart } from './../../context/useCart';
 import EmptyState from '../../components/Common/EmptyState';
 import CartItem from '../../components/Card/CartItem';
 const Cart = () => {
-    const {items,subtotal} = useCart();
-    const delivery = subtotal ? 40:0;
-    const total = subtotal+delivery;
+    const {items,subTotal,deliveryFee,total} = useCart();
     if(!items.length){
         return (
             <div className="section">
@@ -44,11 +42,11 @@ const Cart = () => {
                 <h2>Bill details</h2>
                 <div>
                     <span>subtotal</span>
-                    <b>{subtotal.toFixed(2)}</b>
+                    <b>{subTotal.toFixed(2)}</b>
                 </div>
                 <div>
                     <span>Delivery fee</span>
-                    <b>{delivery.toFixed(2)}</b>
+                    <b>{deliveryFee.toFixed(2)}</b>
                 </div>
                 <hr />
                 <div>

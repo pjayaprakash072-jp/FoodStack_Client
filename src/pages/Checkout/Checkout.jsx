@@ -2,29 +2,53 @@ import { CreditCard, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useCart } from '../../context/useCart'
 import useCheckout from './../../context/useCheckout';
+import { useState } from 'react';
+import { getErrorMessage } from '../../utils/api';
+import orderService from '../../services/orderService';
 const Checkout = () => {
-    const {subtotal} = useCart();
-    const {selectedAddress} = useCheckout();
+    const {items,subTotal,deliveryFee,total,clearCart} = useCart();
+    const {selectedAddress,selectedPayment} = useCheckout();
+    const [error,setError] = useState("");
+    const placeOrder = async()=>{
+        try {
+            const payload = {
+                items,
+                addressId:selectedAddress._id,
+                paymentMethod:selectedPayment
+            }
+            console.log(payload)
+            const response = await orderService.create(payload);
+            console.log(response);
+            clearCart();
+        } catch (error) {
+            setError(getErrorMessage(error));
+        }
+    }
     return (
     <section className="section">
         <span className="eyebrow">CHECKOUT</span>
         <h1>complete your order</h1>
+        {error && <div className='error'>{error}</div>}
         <div className="checkout-cards">
             <Link to="/profile/addresses?form=checkout" className="choice-card">
             <MapPin/>
             <div>
                 <h3>Delivery address</h3>
-                <p>{ selectedAddress? `Delivery address Selected!`:"Choose where your order should be delivered"}</p>
+                <p>{ selectedAddress? `${selectedAddress.label}, ${selectedAddress.fullName}, ${selectedAddress.phone}`:"Choose where your order should be delivered"}</p>
             </div>
             </Link>
-            <Link to="/checkout/payment" className="choice-card">
+            <Link to="/payment" className="choice-card">
             <CreditCard/>
             <div>
                 <h3>Paymet</h3>
-                <p>Choose a payment method. Current subtotal:{subtotal.toFixed(2)}</p>
+                <p>{selectedPayment?`${selectedPayment}`:"Choose a payment method."} Current total:{total.toFixed(2)}</p>
             </div>
             </Link>
         </div>
+        <button className={`button ${(!selectedAddress || !selectedPayment)?"disabled":"primary"} submitbtn`} 
+        disabled={!selectedAddress || !selectedPayment}
+        onClick={placeOrder}
+        >Place Order</button>
     </section>
   )
 }

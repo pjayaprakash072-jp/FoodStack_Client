@@ -8,7 +8,7 @@ export const CartContext = createContext(null);
 export const CartProvider = ({children})=>{
     const {isAuthenticated} = useAuth();
     const [items,setItems] = useState([]);
-    const [busy,setBusy] = useState(false);
+    const [Loading,setLoading] = useState(false);
     // const [items,setItems] = useState(()=>{
     //     try {
     //         return JSON.parse(localStorage.getItem("foodStack_cart") ||"[]")
@@ -38,7 +38,7 @@ export const CartProvider = ({children})=>{
                     }
                     return
                 }
-                setBusy(true);
+                setLoading(true);
                 try {
                     const guestCart = JSON.parse(localStorage.getItem("foodstack_cart") || "[]");
                     let data;
@@ -55,7 +55,7 @@ export const CartProvider = ({children})=>{
                     console.log("Failed to load cart"),
                     error
                 }finally{
-                    setBusy(false);
+                    setLoading(false);
                 }
             };
             loadCart();
@@ -180,24 +180,28 @@ const clearCart = async()=>{
 }
 // TOTAL ITEMS
     const totalItems = items.reduce((sum,item)=>sum+item.quantity, 0)
-    const subtotal = items.reduce(
+    const subTotal = items.reduce(
         (sum,item)=> {
             return sum+ Number(item.price) * item.quantity
         }
         ,0
     )
-
+    const deliveryFee = subTotal ? 40:0;
+    const total = subTotal+deliveryFee;
     const value = useMemo(
         ()=>({
+            Loading,
             items,
             addItem,
             updateQuantity,
             removeItem,
             clearCart,
             totalItems,
-            subtotal
+            subTotal,
+            deliveryFee,
+            total
         }),
-        [items,totalItems,subtotal,busy]
+        [items,totalItems,subTotal,deliveryFee,Loading]
     )
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

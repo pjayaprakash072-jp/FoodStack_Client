@@ -57,7 +57,7 @@ const Addresses = () => {
                         key={a._id} 
                         a = {a} 
                         select={fromCheckout}
-                        onSelect={
+                        selecetThis={
                             fromCheckout ?
                             ()=>{
                                 setSelectedAddress(a);

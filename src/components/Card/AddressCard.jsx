@@ -1,7 +1,7 @@
 
-const AddressCard = ({a,remove,select,onSelect}) => {
+const AddressCard = ({a,remove,select,selecetThis}) => {
   return (
-        <div className="address-card" key={a._id} onClick={select ? onSelect : undefined}>
+        <div className="address-card" key={a._id} onClick={select ? selecetThis : undefined}>
             <div className="row-between">
                 <b>{a.label || "Address"}</b>
                 {
@@ -31,7 +31,7 @@ const AddressCard = ({a,remove,select,onSelect}) => {
                 <p>{a.city},{a.state},{a.pincode}</p>
             </div>
             {
-                select && (<button type="button">Select</button>)
+                select && (<button type="button" className="button primary">Select</button>)
             }
         </div>
   )

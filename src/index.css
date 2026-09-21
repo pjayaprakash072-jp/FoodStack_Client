@@ -82,9 +82,9 @@
   p-1 md:p-1.5 
   text-[12px] md:text-sm 
   rounded-lg
-  bg-white md:bg-transparent
+  /* bg-white md:bg-transparent */
   text-black
-  hover:bg-white hover:text-black
+  /* hover:bg-white hover:text-black */
   transition-colors duration-300 ease-in-out
 }
 .button.primary
@@ -99,6 +99,9 @@
 .button.secondary{
   @apply 
   bg-slate-200 hover:bg-slate-500 text-black
+}
+.disabled{
+  @apply bg-slate-500 text-black
 }
 .submitbtn{
   @apply w-full py-3
