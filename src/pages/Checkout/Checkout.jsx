@@ -1,14 +1,15 @@
 import { CreditCard, MapPin } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../../context/useCart'
 import useCheckout from './../../context/useCheckout';
 import { useState } from 'react';
 import { getErrorMessage } from '../../utils/api';
 import orderService from '../../services/orderService';
 const Checkout = () => {
-    const {items,subTotal,deliveryFee,total,clearCart} = useCart();
+    const {items,total,clearCart} = useCart();
     const {selectedAddress,selectedPayment} = useCheckout();
     const [error,setError] = useState("");
+    const navigate = useNavigate();
     const placeOrder = async()=>{
         try {
             const payload = {
@@ -20,6 +21,7 @@ const Checkout = () => {
             const response = await orderService.create(payload);
             console.log(response);
             clearCart();
+            navigate("/orders")
         } catch (error) {
             setError(getErrorMessage(error));
         }
