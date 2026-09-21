@@ -5,8 +5,8 @@ import { useCart } from './../../context/useCart';
 import EmptyState from '../../components/Common/EmptyState';
 import CartItem from '../../components/Card/CartItem';
 const Cart = () => {
-    const {items,subTotal,deliveryFee,total} = useCart();
-    if(!items.length){
+    const {groupedItems} = useCart();
+    if(!Object.keys(groupedItems).length){
         return (
             <div className="section">
                 <div className="empty-icon">
@@ -16,7 +16,7 @@ const Cart = () => {
                 title ="Your cart is Empty"
                 text="Add somethign delicious from a outlets."
                 />
-                <Link className="button" to="/outlets">Browse outlet</Link>
+                <Link className="button primary" to="/outlets">Browse outlet</Link>
             </div>
         )
     }
@@ -29,7 +29,7 @@ const Cart = () => {
             </div>
         </div>
         <div className="cart-layout">
-            <div>
+            {/* <div>
                 {
                     items.map(
                         (x)=>(
@@ -58,7 +58,47 @@ const Cart = () => {
                 Proceed to checkout <ArrowRight size={17}/>
                 </Link>
                 </button>
-            </aside>
+            </aside> */}
+            {
+                Object.values(groupedItems).map(
+                    (group)=>{
+                        const deliveryFee = group.subTotal > 0 ? 40:0;
+                        const total = group.subTotal + deliveryFee;
+                        const outletId = typeof group.outlet === "object"?group.outlet._id : group.outlet;
+                        const outletName = typeof group.outlet === "object"? group.outlet.name : "Outlet"
+                        return (
+                            <div className="cart-outlet" key={outletId}>
+                                <h2>{outletName}</h2>
+                                {
+                                    group.items.map(
+                                        (item)=>(
+                                            <CartItem key={item._id} item={item}/>
+                                        )
+                                    )
+                                }
+                                <div className="outlet-summary">
+                                    <div>
+                                        <span>SubTotal</span>
+                                        <b>{group.subTotal.toFixed(2)}</b>
+                                    </div>
+                                    <div>
+                                        <span>Delivery Fee</span>
+                                        <b>₹{deliveryFee.toFixed(2)}</b>
+                                    </div>
+                                    <div>
+                                        <span>Total</span>
+                                        <b>₹{total.toFixed(2)}</b>
+                                    </div>
+                                    <Link className="button primary" to={`/checkout/${outletId}`}>
+                                    Proceed to Checkout
+                                    <ArrowRight/>
+                                    </Link>
+                                </div>
+                            </div>
+                        )
+                    }
+                )
+            }
         </div>
     </section>
   )

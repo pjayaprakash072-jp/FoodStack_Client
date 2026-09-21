@@ -1,8 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import useCheckout from "../../context/useCheckout"
 
 const Payment = () => {
     const navigage = useNavigate();
+    const [params] =useSearchParams();
+    const outletId = params.get("outletId")
     const {selectedPayment,setSelectedPayment} = useCheckout();
   return (
     <section className="section">
@@ -24,7 +26,7 @@ const Payment = () => {
                 /> {" "} Upi
             </label>
         </div>
-        <button className="button primary" type="button" onClick={()=>navigage("/checkout")}> submit</button>
+        <button className="button primary" type="button" onClick={()=>navigage(`/checkout/${outletId}`)}> submit</button>
     </section>
   )
 }

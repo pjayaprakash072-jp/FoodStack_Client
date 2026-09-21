@@ -1,4 +1,4 @@
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useEffect, useMemo, useState } from "react";
 import { useAuth } from './useAuth';
 import cartService from "../services/cartService";
 
@@ -9,15 +9,9 @@ export const CartProvider = ({children})=>{
     const {isAuthenticated} = useAuth();
     const [items,setItems] = useState([]);
     const [Loading,setLoading] = useState(false);
-    // const [items,setItems] = useState(()=>{
-    //     try {
-    //         return JSON.parse(localStorage.getItem("foodStack_cart") ||"[]")
-    //     } catch {
-    //         return [];
-    //     }
-    // })
-    const formatCartItems = (cartItems=[])=>{
-        return cartItems.map(
+
+    const formatCartItems = useCallback((cartItems=[])=>{
+        return cartItems.filter((x)=>x?.item).map(
             (x)=>(
                 {
                     ...x.item,
@@ -25,15 +19,18 @@ export const CartProvider = ({children})=>{
                 }
             )
         )
-    }
+    },[])
     useEffect(
         ()=>{
             const loadCart = async()=>{
                 if(!isAuthenticated){
                     try{
                         const guestCart = JSON.parse(localStorage.getItem("foodstack_cart") || "[]");
-                        setItems(guestCart);
-                    }catch{
+                        setItems(
+                            Array.isArray(guestCart)? guestCart:[]
+                        );
+                    }catch(error){
+                        console.log("Failed to load gurst cart",error)
                         setItems([]);
                     }
                     return
@@ -59,7 +56,7 @@ export const CartProvider = ({children})=>{
                 }
             };
             loadCart();
-        },[isAuthenticated]
+        },[isAuthenticated,formatCartItems]
     )
     useEffect(
         ()=>{
@@ -69,12 +66,12 @@ export const CartProvider = ({children})=>{
         },
         [items,isAuthenticated]
     )
-    const addItem = async(item)=>{
+    const addItem = useCallback(async(item)=>{
         if(!isAuthenticated){
             setItems(
                 (currnt)=>{ // currnt is the exinsting the Array of itemsin local storage.
                     const id = item._id;
-                    const found = currnt.find((x)=>(x._id) === id)
+                    const found = currnt.find((x)=>x._id === id)
                     if(found){
                         return currnt.map(
                             (x)=>(
@@ -97,7 +94,8 @@ export const CartProvider = ({children})=>{
                 error
             )
         }
-    }
+    },[isAuthenticated,formatCartItems]
+)
 
 
 // addItem(item)
@@ -117,9 +115,30 @@ export const CartProvider = ({children})=>{
 // quantity + 1    quantity: 1
 
 
+const removeItem =useCallback(async(id)=>{
+    if(!isAuthenticated){
+        setItems(
+            (current)=> current.filter( (x)=> x._id !== id)
+        )
+        return;
+    }
+    try {
+        const data = await cartService.remove(id);
+        setItems(formatCartItems(data.cartItems));
+    } catch (error) {
+        console.log(
+            "Failed to remove item",
+            error
+        )
+    }
+},[isAuthenticated,formatCartItems]
+)
 
-const updateQuantity = async(id,quantity)=>{
-    if(quantity <=0) return removeItem(id);
+const updateQuantity = useCallback(async(id,quantity)=>{
+    if(quantity <=0){
+        await removeItem(id);
+        return;
+    } 
     if(!isAuthenticated){
         setItems(
             (current)=>(
@@ -143,27 +162,9 @@ const updateQuantity = async(id,quantity)=>{
             error
         )
     }
-}
-const removeItem =async(id)=>{
-    if(!isAuthenticated){
-        setItems(
-            (current)=> current.filter( (x)=> x._id !== id)
-        )
-        return;
-    }
-    try {
-        const data = await cartService.remove(id);
-        setItems(
-            (current)=> current.filter( (x)=> x._id !== id)
-        )
-    } catch (error) {
-        console.log(
-            "Failed to remove item",
-            error
-        )
-    }
-}
-const clearCart = async()=>{
+},[isAuthenticated,formatCartItems,removeItem]);
+
+const clearCart = useCallback(async()=>{
     if(!isAuthenticated){
         setItems([]);
         return;
@@ -177,31 +178,113 @@ const clearCart = async()=>{
             error
         )
     }
-}
+},[isAuthenticated])
 // TOTAL ITEMS
-    const totalItems = items.reduce((sum,item)=>sum+item.quantity, 0)
-    const subTotal = items.reduce(
-        (sum,item)=> {
-            return sum+ Number(item.price) * item.quantity
+const groupedItems = useMemo(
+    ()=>{
+        return items.reduce(
+            (groups,item)=>{
+                const outletId = typeof item.outlet === "object" ? item.outlet._id : item.outlet;
+                // if(!outletId){
+                //     return groups;
+                // }
+                if(!groups[outletId]){
+                    groups[outletId] = {
+                        outlet: item.outlet,
+                        items:[],
+                        subTotal:0
+                    }
+                }
+                groups[outletId].items.push(item);
+                groups[outletId].subTotal += Number(item.price)* item.quantity;
+                return groups;
+            },
+            {}
+        )
+    },[items]
+)
+const getItemsByOutlet =useCallback (
+    (outletId) =>{
+        return items.filter(
+            (item)=>{
+                const itemOutletId = typeof item.outlet === "object" ? item.outlet._id: item.outlet;
+                return String(itemOutletId) === String(outletId)
+            }
+        )
+    },[items]
+)
+const clearOutletcart = useCallback(async(outletId)=>{
+    if(!isAuthenticated){
+        setItems(
+            (current)=>
+                current.filter(
+                    (item)=>{
+                        const itemOutletId = typeof item.outlet === "object"? item.outlet._id : item.outlet;
+                        return String(itemOutletId) !== String(outletId)
+                    }
+                )
+        )
+        return;
+    }
+    try {
+        const outletItems = getItemsByOutlet(outletId);
+        for(const item of outletItems){
+            await cartService.remove(item._id);
         }
-        ,0
+        setItems(
+            (current)=>
+                current.filter(
+                    (item)=>{
+                        const itemOutletId = typeof item.outlet === "object"? item.outlet._id : item.outlet;
+                        return String(itemOutletId) !== String(outletId)
+                    }
+                )
+        )
+    } catch (error) {
+        console.log("Failed to clear Outlet cart",error)
+    }
+},[isAuthenticated,getItemsByOutlet])
+
+    const totalItems = useMemo(
+        ()=>{
+
+            return    items.reduce((sum,item)=>sum+item.quantity, 0)
+        },[items]
     )
-    const deliveryFee = subTotal ? 40:0;
-    const total = subTotal+deliveryFee;
+    const totalSubTotal = useMemo(
+        ()=>{
+            return items.reduce(
+                (sum,item)=> sum+ Number(item.price) *Number(item.quantity),0
+            )
+        },[items]
+    )
     const value = useMemo(
         ()=>({
             Loading,
             items,
+            groupedItems,
+            getItemsByOutlet,
             addItem,
             updateQuantity,
             removeItem,
             clearCart,
+            clearOutletcart,
             totalItems,
-            subTotal,
-            deliveryFee,
-            total
+            totalSubTotal
         }),
-        [items,totalItems,subTotal,deliveryFee,Loading]
+        [
+            Loading,
+            items,
+            groupedItems,
+            getItemsByOutlet,
+            addItem,
+            updateQuantity,
+            removeItem,
+            clearCart,
+            clearOutletcart,
+            totalItems,
+            totalSubTotal
+        ]
     )
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

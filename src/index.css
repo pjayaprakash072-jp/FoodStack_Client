@@ -596,6 +596,7 @@
 
 /* PROFILE STYLES */
 .address-card,
+.tracking-card,
 .profile-card{
   @apply bg-white
   border
@@ -666,4 +667,82 @@
   px-2 py-1 
   rounded-2xl
 
+}
+/* CHECKOUT */
+.checkout-cards{
+  @apply 
+
+  grid
+  gap-4
+  mt-6
+}
+.choice-card{
+  @apply bg-white
+  border 
+  border-orange-500
+  rounded-2xl
+  p-5
+  flex
+  items-center
+  gap-4
+}
+.choice-card svg{
+  @apply text-orange-500
+}
+.choice-card p{
+  @apply text-slate-700
+}
+
+/* ORDERS */
+.order-list{
+  @apply
+  grid
+  gap-2.5
+}
+.order-card{
+  @apply bg-white
+  border
+  border-orange-700
+  rounded-2xl
+  p-6
+  flex
+  justify-between
+}
+.order-card p{
+  @apply mb-0
+  text-slate-700
+}
+/* STATUS-STEPS */
+.status-steps{
+  @apply flex
+  justify-between
+  gap-2
+  my-10
+}
+.status-step{
+  @apply
+  flex-1
+  text-center
+  text-slate-700
+}
+.status-step span{
+  @apply grid
+  place-items-center
+  mx-auto
+  mb-2
+  w-10
+  h-10
+  bg-white
+  border
+  border-slate-700
+  rounded-full
+}
+.status-step.active{
+  @apply text-orange-600
+  font-extrabold
+}
+.status-step.active span{
+  @apply bg-orange-600
+  text-white
+  border-orange-700
 }

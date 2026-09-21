@@ -37,7 +37,8 @@ const Orders = () => {
                             (o)=>(
                                 <Link 
                                 className="order-card"
-                                to={`/order/${o._id}`}
+                                // to={`/order/${o._id}`}
+                                to={`/trackorder/${o._id}`}
                                 key={o._id}
                                 >
                                     <div>

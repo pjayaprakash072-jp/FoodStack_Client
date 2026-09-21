@@ -13,6 +13,7 @@ const Addresses = () => {
     const [error,setError] = useState("");
     const [params] = useSearchParams();
     const fromCheckout = params.get("form") === "checkout"
+    const outletId = params.get("outletId")
     const {setSelectedAddress} = useCheckout();
     const navigate = useNavigate();
     useEffect(
@@ -61,7 +62,7 @@ const Addresses = () => {
                             fromCheckout ?
                             ()=>{
                                 setSelectedAddress(a);
-                                navigate("/checkout")
+                                navigate(`/checkout/${outletId}`)
                             }:undefined
                         }
                         remove= {remove}/>
