@@ -14,15 +14,15 @@ const Payment = () => {
             <label>
                 <input 
                 type="radio"
-                checked = {selectedPayment === "COD"}
-                onChange={()=> setSelectedPayment("COD")}
+                checked = {selectedPayment.method === "COD"}
+                onChange={()=> setSelectedPayment(prev =>({...prev,method:"COD",razorpayOrderId:null,razorpayPaymentId:null,status:"not_required"}))}
                 /> {" "} Cash on Delivery
             </label>
             <label>
                 <input 
                 type="radio"
-                checked = {selectedPayment === "UPI"}
-                onChange={()=> setSelectedPayment("UPI")}
+                checked = {selectedPayment.method === "UPI"}
+                onChange={()=> setSelectedPayment(prev =>({...prev,method:"UPI",razorpayOrderId:null,razorpayPaymentId:null,status:null}))}
                 /> {" "} Upi
             </label>
         </div>

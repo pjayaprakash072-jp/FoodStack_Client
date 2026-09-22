@@ -5,7 +5,14 @@ export const CheckoutContext = createContext(null);
 
 export const CheckoutProvicer = ({children})=>{
     const [selectedAddress, setSelectedAddress] = useState(null);
-    const [selectedPayment, setSelectedPayment] = useState(null);
+    const [selectedPayment, setSelectedPayment] = useState(
+        {
+            method:null,
+            razorpayOrderId:null,
+            razorpayPaymentId:null,
+            status:null
+        }
+    );
     return (
         <CheckoutContext.Provider value={{selectedAddress,setSelectedAddress,selectedPayment, setSelectedPayment}}>{children}</CheckoutContext.Provider>
     )
