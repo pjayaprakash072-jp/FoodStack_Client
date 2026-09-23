@@ -81,11 +81,11 @@ const Checkout = () => {
                                 }
                             )
                         ),
-                        addressId:selectedAddress._id,
-                        paymentMethod:selectedPayment.method
+                        addressId:selectedAddress._id
+                                        
                     }
                     const verifyResponse = await paymentService.verify(verifyPayload);
-                    console.log("Payment Verification",verifyResponse);
+                    console.log("Payment Verification Response",verifyResponse);
                     await clearOutletcart(outletId);
                     navigate("/orders")
                 } catch (error) {
@@ -97,14 +97,14 @@ const Checkout = () => {
             },
             prefill:{
                 name:selectedAddress?.fullName ||"",
-                contack:selectedAddress?.phone ||""
+                contact:selectedAddress?.phone ||""
             }
             ,
             theme:{
                 color:"#ff6b35"
             }
         }
-        const razorpay  = new  Razorpay(options);
+        const razorpay  = new  Razorpay(options); // opeinging the frontend razoray UI to make chekcout.
         razorpay.open();
     }
     const handleUPIPayment = async()=>{
@@ -112,7 +112,7 @@ const Checkout = () => {
             setError("Please select a delivery Address.");
             return;
         }
-        if(!selectedPayment){
+        if(!selectedPayment?.method){
             setError("Please selece a payment method.");
             return;
         }
@@ -174,7 +174,7 @@ const Checkout = () => {
             </Link>
         </div>
         <button className={`button ${(!selectedAddress || !selectedPayment)?"disabled":"primary"} submitbtn`} 
-        disabled={!selectedAddress || !selectedPayment || !items.length}
+        disabled={!selectedAddress || !selectedPayment?.method || !items.length}
         onClick={handlecheckout}
         >{
             selectedPayment.method == "UPI" && selectedPayment.status !== "paid" ? `pay₹${total.toFixed(2)}`:"Place Order"
