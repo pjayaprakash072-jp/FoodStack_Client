@@ -605,7 +605,7 @@
   p-5
   my-3
 }
-.profile-card{
+.profile-card .details{
   @apply flex
   items-center
   gap-4
@@ -621,14 +621,18 @@
   text-[22px]
   font-black
 }
-
-.profile-card >div:nth-child(2){
+.avatar>img{
+  @apply w-full
+  h-full
+  
+}
+.profile-card .details >div:nth-child(2){
   @apply flex-1
 }
-.profile-card h2{
+.profile-card .details h2{
   @apply m-0
 }
-.profile-card p{
+.profile-card .details p{
   @apply my-1 
   text-slate-500
 }
