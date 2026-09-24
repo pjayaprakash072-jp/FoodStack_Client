@@ -624,7 +624,8 @@
 .avatar>img{
   @apply w-full
   h-full
-  
+  object-center
+  overflow-hidden
 }
 .profile-card .details >div:nth-child(2){
   @apply flex-1

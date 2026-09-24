@@ -30,7 +30,13 @@ const Profile = () => {
         e.preventDefault();
         try {
             setBusy(true);
-            const response = await userService.update(form);
+            const formData = new FormData();
+            for(const key in form){
+                if(form[key] !== null && form[key] !== undefined){
+                    formData.append(key,form[key])
+                }
+            }
+            const response = await userService.update(formData);
             console.log("updated Rsponse:",response);
             updateUser(response.user);
             setEdit(false)
