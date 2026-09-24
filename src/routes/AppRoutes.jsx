@@ -1,4 +1,4 @@
-import { Routes ,Route,Navigate} from "react-router-dom"
+import { Routes ,Route,Navigate, Outlet} from "react-router-dom"
 import Dashboard from "../pages/Dashboard/Dashboard.jsx"
 import { useAuth } from './../context/useAuth';
 import DashboardLayout from './../components/Layout/DashboardLayout';
@@ -18,38 +18,57 @@ import Payment from "../pages/Checkout/Payment.jsx";
 import Orders from "../pages/Order/Orders.jsx";
 import TrackOrder from "../pages/Order/TrackOrder.jsx";
 
+function GuestOnly(){
+  const {isAuthenticated} = useAuth();
 
-function Private({children}){
+  return isAuthenticated?(
+    <Navigate to="/" replace/>
+  ):(
+    <DashboardLayout><Outlet/></DashboardLayout>
+  )
+}
+
+function Private(){
     const {isAuthenticated} = useAuth();
-    return isAuthenticated? (
-                            <DashboardLayout>
-                                {children}
-                            </DashboardLayout>
-                    ):(
-                                <Navigate  to ="/login"/>
-                    )
+    return isAuthenticated ? 
+    (
+      <DashboardLayout><Outlet/></DashboardLayout>
+    ):(
+      <Navigate  to ="/login" replace/>
+    )
     }
+function Public(){
+
+  return (
+    <DashboardLayout><Outlet/></DashboardLayout>
+  )
+}
 const AppRoutes = () => {
   return (
     <Routes>
-        {/* <Route path="/" element={<Navigate to = "/dashboard" replace/>}/> */}
-        <Route path="/" element={<DashboardLayout><Dashboard/></DashboardLayout>}/>
-        <Route path="/login" element={<DashboardLayout><Login/></DashboardLayout>}/>
-        <Route path="/register" element={<DashboardLayout><Register/></DashboardLayout>}/>
-        <Route path="/Dashboard" element = {<Private><Dashboard/></Private>}/>
-        <Route path="/outlets" element={<DashboardLayout><OutletList/></DashboardLayout>}/>
-        <Route path="/outlet/:id" element={<DashboardLayout><OutletDetails/></DashboardLayout>}/>
-        <Route path="/menu/:outletId" element={<DashboardLayout><Menu/></DashboardLayout>}/>\
-        <Route path="/cart" element = {<DashboardLayout><Cart/></DashboardLayout>}/>
-        <Route path="/profile" element={<Private><Profile/></Private>}/>
-        <Route path="/checkout/:outletId" element={<Private><Checkout/></Private>}/>
-        <Route path="/payment" element={<Private><Payment/></Private>}/>
-        <Route path="/trackorder/:orderId" element={<Private><TrackOrder/></Private>}/>
-        <Route path="/orders" element={<Private><Orders/></Private>}/>
-        <Route path="/profile/addresses" element={<Private><Addresses/></Private>}/>
-        <Route path="/profile/addaddress" element={<DashboardLayout><AddAddress/></DashboardLayout>}/>
-        <Route path="/checkout/address" element={<DashboardLayout><SelectAdderss/></DashboardLayout>}/>
-        <Route path="*" element={<DashboardLayout><NotFound/></DashboardLayout>}/>
+      <Route element={<GuestOnly/>}>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<Register/>}/>
+      </Route>
+      <Route element={<Public/>}>
+        <Route path="/outlets" element={<OutletList/>}/>
+        <Route path="/outlet/:id" element={<OutletDetails/>}/>
+        <Route path="/menu/:outletId" element={<Menu/>}/>
+        <Route path="/cart" element = {<Cart/>}/>
+      </Route>
+      <Route element={<Private/>}>
+        <Route path="/" element={<Dashboard/>}/>
+        <Route path="/Dashboard" element = {<Dashboard/>} />
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/payment" element={<Payment/>}/>
+        <Route path="/checkout/:outletId" element={<Checkout/>}/>
+        <Route path="/trackorder/:orderId" element={<TrackOrder/>}/>
+        <Route path="/orders" element={<Orders/>}/>
+        <Route path="/profile/addresses" element={<Addresses/>}/>
+        <Route path="/profile/addaddress" element={<AddAddress/>}/>
+        <Route path="/checkout/address" element={<SelectAdderss/>}/>
+      </Route>
+        <Route path="*" element={<NotFound/>}/>
     </Routes>
   )
 }
