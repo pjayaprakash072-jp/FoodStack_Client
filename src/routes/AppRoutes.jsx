@@ -51,13 +51,13 @@ const AppRoutes = () => {
         <Route path="/register" element={<Register/>}/>
       </Route>
       <Route element={<Public/>}>
+        <Route path="/" element={<Dashboard/>}/>
         <Route path="/outlets" element={<OutletList/>}/>
         <Route path="/outlet/:id" element={<OutletDetails/>}/>
         <Route path="/menu/:outletId" element={<Menu/>}/>
         <Route path="/cart" element = {<Cart/>}/>
       </Route>
       <Route element={<Private/>}>
-        <Route path="/" element={<Dashboard/>}/>
         <Route path="/Dashboard" element = {<Dashboard/>} />
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/payment" element={<Payment/>}/>

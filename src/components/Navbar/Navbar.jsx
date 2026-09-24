@@ -6,7 +6,7 @@ import { useCart } from "../../context/useCart";
 
 const Navbar = ({ openSidebar }) => {
   const { token, logout } = useAuth();
-  const {totalItems} = useCart();
+  const { totalItems } = useCart();
 
   return (
     <div className="nav-bar">
@@ -17,44 +17,39 @@ const Navbar = ({ openSidebar }) => {
           </button>
         ) : (
           <NavLink to="/">
-            <img 
-            src="/FS1.svg" 
-            />
+            <img src="/FS1.svg" />
           </NavLink>
         )}
       </div>
-      <div className="nav-bar-search">
-        {/* <SearchBar /> */} <h1>FoodStack</h1>
-      </div>
+      <div className="nav-bar-search">{/* <SearchBar /> */}</div>
 
       <div className="nav-bar-right">
-        <NavLink to="/outlets">Outlets</NavLink>
+        <NavLink to="/outlets" className="md-only">Outlets</NavLink>
         <NavLink to="/cart" className="cart-link">
-        <ShoppingBag size={19}/> Cart 
-        {
-          totalItems >0 && <b>{totalItems}</b>
-        }
+          <ShoppingBag size={19} /> <span className="md-only">Cart</span>
+          {totalItems > 0 && <b>{totalItems}</b>}
         </NavLink>
         {token ? (
           <>
             <button className="nav-bar-right-button">
               <NavLink to="/profile">
-              <UserCircle size={30}/>
+                <UserCircle size={30} />
               </NavLink>
             </button>
-            <button className="button primary" 
-            onClick={logout}>
-              <LogOut size={19} />
-            </button>
+            <div className="md-only">
+              <button className="button primary " onClick={logout}>
+                <LogOut size={19} />
+              </button>
+            </div>
           </>
         ) : (
           <>
-          <NavLink to="/login">
-            <button className=" button">Login</button>
-          </NavLink>
-          <NavLink to="/register">
-            <button className=" button">Register</button>
-          </NavLink>
+            <NavLink to="/login">
+              <button className=" button">Login</button>
+            </NavLink>
+            <NavLink to="/register">
+              <button className=" button">Register</button>
+            </NavLink>
           </>
         )}
       </div>

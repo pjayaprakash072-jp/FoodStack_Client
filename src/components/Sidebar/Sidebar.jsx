@@ -9,6 +9,9 @@ const Sidebar = ({open,CloseSidebar}) => {
                 <h1>Sidebar</h1>
                 <button className="button primary" onClick={CloseSidebar}><X size={19}/></button>
             </div>
+            <div className="sidebar-links">
+
+            </div>
         </div>
     </>
   )

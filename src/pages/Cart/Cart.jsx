@@ -15,8 +15,10 @@ const Cart = () => {
                 <EmptyState
                 title ="Your cart is Empty"
                 text="Add somethign delicious from a outlets."
-                />
+                >
+
                 <Link className="button primary" to="/outlets">Browse outlet</Link>
+                </EmptyState>
             </div>
         )
     }
@@ -28,37 +30,6 @@ const Cart = () => {
                 <h1>Cart</h1>
             </div>
         </div>
-        <div className="cart-layout">
-            {/* <div>
-                {
-                    items.map(
-                        (x)=>(
-                            <CartItem key={x._id} item={x}/>
-                        )
-                    )
-                }
-            </div>
-            <aside className="summary">
-                <h2>Bill details</h2>
-                <div>
-                    <span>subtotal</span>
-                    <b>{subTotal.toFixed(2)}</b>
-                </div>
-                <div>
-                    <span>Delivery fee</span>
-                    <b>{deliveryFee.toFixed(2)}</b>
-                </div>
-                <hr />
-                <div>
-                    <span className='total'>Total</span>
-                    <b>{total.toFixed(2)}</b>
-                </div>
-                <button className="button primary full">
-                    <Link  to="/checkout" className='link'>
-                Proceed to checkout <ArrowRight size={17}/>
-                </Link>
-                </button>
-            </aside> */}
             {
                 Object.values(groupedItems).map(
                     (group)=>{
@@ -67,41 +38,75 @@ const Cart = () => {
                         const outletId = typeof group.outlet === "object"?group.outlet._id : group.outlet;
                         const outletName = typeof group.outlet === "object"? group.outlet.name : "Outlet"
                         return (
-                            <div className="cart-outlet" key={outletId}>
+                            <div className='cart'>
                                 <h2>{outletName}</h2>
-                                {
-                                    group.items.map(
-                                        (item)=>(
-                                            <CartItem key={item._id} item={item}/>
-                                        )
-                                    )
-                                }
-                                <div className="outlet-summary">
+                                <div className="cart-layout" key={outletId}>
                                     <div>
-                                        <span>SubTotal</span>
-                                        <b>{group.subTotal.toFixed(2)}</b>
+
+                                        {
+                                            group.items.map(
+                                                (item)=>(
+                                                    <CartItem key={item._id} item={item}/>
+                                                )
+                                            )
+                                        }
                                     </div>
-                                    <div>
-                                        <span>Delivery Fee</span>
-                                        <b>₹{deliveryFee.toFixed(2)}</b>
+                                    <div className="summary">
+                                        <div>
+                                            <span>SubTotal</span>
+                                            <b>{group.subTotal.toFixed(2)}</b>
+                                        </div>
+                                        <div>
+                                            <span>Delivery Fee</span>
+                                            <b>₹{deliveryFee.toFixed(2)}</b>
+                                        </div>
+                                        <div>
+                                            <span>Total</span>
+                                            <b>₹{total.toFixed(2)}</b>
+                                        </div>
+                                        <Link className="button primary" to={`/checkout/${outletId}`}>
+                                        Proceed to Checkout
+                                        <ArrowRight/>
+                                        </Link>
                                     </div>
-                                    <div>
-                                        <span>Total</span>
-                                        <b>₹{total.toFixed(2)}</b>
-                                    </div>
-                                    <Link className="button primary" to={`/checkout/${outletId}`}>
-                                    Proceed to Checkout
-                                    <ArrowRight/>
-                                    </Link>
                                 </div>
                             </div>
                         )
                     }
                 )
             }
-        </div>
     </section>
   )
 }
 
 export default Cart
+                {/* <div>
+                        {
+                            items.map(
+                                (x)=>(
+                                    <CartItem key={x._id} item={x}/>
+                                )
+                            )
+                        }
+                    </div>
+                    <aside className="summary">
+                        <h2>Bill details</h2>
+                        <div>
+                            <span>subtotal</span>
+                            <b>{subTotal.toFixed(2)}</b>
+                        </div>
+                        <div>
+                            <span>Delivery fee</span>
+                            <b>{deliveryFee.toFixed(2)}</b>
+                        </div>
+                        <hr />
+                        <div>
+                            <span className='total'>Total</span>
+                            <b>{total.toFixed(2)}</b>
+                        </div>
+                        <button className="button primary full">
+                            <Link  to="/checkout" className='link'>
+                        Proceed to checkout <ArrowRight size={17}/>
+                        </Link>
+                        </button>
+                    </aside> */}
