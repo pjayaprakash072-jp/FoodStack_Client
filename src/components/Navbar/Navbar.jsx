@@ -9,49 +9,55 @@ const Navbar = ({ openSidebar }) => {
   const { totalItems } = useCart();
 
   return (
-    <div className="nav-bar">
-      <div className="nav-bar-left">
-        {token ? (
-          <button className="button primary" onClick={openSidebar}>
-            <Menu size={19} />
-          </button>
-        ) : (
-          <NavLink to="/">
-            <img src="/FS1.svg" />
-          </NavLink>
-        )}
-      </div>
-      <div className="nav-bar-search">{/* <SearchBar /> */}</div>
-
-      <div className="nav-bar-right">
-        <NavLink to="/outlets" className="md-only">Outlets</NavLink>
-        <NavLink to="/cart" className="cart-link">
-          <ShoppingBag size={19} /> <span className="md-only">Cart</span>
-          {totalItems > 0 && <b>{totalItems}</b>}
-        </NavLink>
-        {token ? (
-          <>
-            <button className="nav-bar-right-button">
-              <NavLink to="/profile">
-                <UserCircle size={30} />
-              </NavLink>
-            </button>
-            <div className="md-only">
-              <button className="button primary " onClick={logout}>
-                <LogOut size={19} />
+    <div className="navbar">
+        <div className="navbar-t">
+          <div className="navbar-t-l">
+            {token ? (
+              <button className="button primary" onClick={openSidebar}>
+                <Menu size={19} />
               </button>
-            </div>
-          </>
-        ) : (
-          <>
-            <NavLink to="/login">
-              <button className=" button">Login</button>
+            ) : (
+              <NavLink to="/">
+                <img src="/FS1.svg" />
+              </NavLink>
+            )}
+          </div>
+          <div className="navbar-search">{/* <SearchBar /> */}<h1>FoodStack</h1></div>
+
+          <div className="navbar-t-r">
+            <NavLink to="/menu" className="md-only">Items</NavLink>
+            <NavLink to="/outlets" className="md-only">Outlets</NavLink>
+            <NavLink to="/cart" className="cart-link">
+              <ShoppingBag size={19} /> <span className="md-only">Cart</span>
+              {totalItems > 0 && <b>{totalItems}</b>}
             </NavLink>
-            <NavLink to="/register">
-              <button className=" button">Register</button>
-            </NavLink>
-          </>
-        )}
+            {token ? (
+              <>
+                <button className="navbar-right-button">
+                  <NavLink to="/profile">
+                    <UserCircle size={30} />
+                  </NavLink>
+                </button>
+                <div className="md-only">
+                  <button className="button primary " onClick={logout}>
+                    <LogOut size={19} />
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <NavLink to="/login">
+                  <button className=" button">Login</button>
+                </NavLink>
+                <NavLink to="/register">
+                  <button className=" button">Register</button>
+                </NavLink>
+              </>
+            )}
+          </div>
+        </div>
+      <div className=" navbar-b mobile-only">
+        <h1>what is that</h1>
       </div>
     </div>
   );

@@ -61,7 +61,7 @@ const Checkout = () => {
             amount:razorpayOrder.amount,
             currency:razorpayOrder.currency,
             order_id:razorpayOrder.id,
-            name:"FoodStack",
+            name:"Good",
             description:"foodStack Food Order",
             handler: async(paymentResponse) =>{
                 try {

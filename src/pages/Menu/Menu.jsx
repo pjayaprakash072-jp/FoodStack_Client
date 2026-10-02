@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import {  useSearchParams } from "react-router-dom"
 import menuItemService from "../../services/menuItemService";
 import { getErrorMessage } from "../../utils/api";
 import Loader from "../../components/Common/Loader"
 import MenuItemCard from "../../components/Card/MenuItemCard";
 import EmptyState from "../../components/Common/EmptyState";
 const Menu = () => {
-    const {outletId} = useParams();
+    const [params] = useSearchParams();
+    const outletId = params.get("outlet")
     const [items,setItems] = useState([]);
     const [busy,setBusy] = useState(true);
     const [error,setError]= useState("");
@@ -14,7 +15,7 @@ const Menu = () => {
         ()=>{
             (async ()=>{
                 try {
-                    const response = await menuItemService.byOutlet(outletId)
+                    const response = outletId?  await menuItemService.byOutlet(outletId): await menuItemService.getAll();
                     setItems(response.menuItems)
                 } catch (error) {
                     setError(getErrorMessage(error));

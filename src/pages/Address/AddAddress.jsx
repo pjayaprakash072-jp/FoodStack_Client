@@ -70,7 +70,7 @@ const AddAddress = () => {
           {
             ...prev,latitude,longitude,
             addressLine1:[address.house_number,address.road].filter(Boolean).join(","),
-            addressLine2:address.suburb || address.neighbourhood || address.residential || "",
+            addressLine2:[address.suburb, address.neighbourhood, address.residential].filter(Boolean).join(", "),
             city:address.city || address.town|| address.municipality || "",
             state:address.state ||"",
             pincode:address.postcode || "",

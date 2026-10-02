@@ -56,7 +56,7 @@ const OutletDetails = () => {
                         <MapPin size={16} />{outlet.city || "Nearby"}
                     </span>
                 </div>
-                <Link className="button primary" to={`/menu/${id}`}>view Menu</Link>
+                <Link className="button primary" to={`/menu?outlet=${id}`}>view Menu</Link>
             </div>
         </div>
     </section>
