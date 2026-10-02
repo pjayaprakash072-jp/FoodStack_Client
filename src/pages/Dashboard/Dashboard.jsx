@@ -30,10 +30,13 @@ const Dashboard = () => {
             <Link className="button primary" to="/outlets">
             Explore more<ArrowRight/>
             </Link>
-            <ShoppingBag/>
+            <Link className="button primary" to="/cart">
+            Explore Cart<ShoppingBag/>
+            </Link>
+            
           </div>
         </div>
-        <div className="hero-art">
+        <div className="hero-art md-only">
         <UtensilsCrossed size={100}/>
         <span>🍕</span>
         <span>🍔</span>

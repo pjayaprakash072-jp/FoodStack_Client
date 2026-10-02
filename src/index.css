@@ -38,9 +38,11 @@
   @apply 
   px-2.5 md:p-3
   flex items-center 
+  flex-row-reverse md:flex-row
   gap-1 md:gap-3
   h-fit
-  pt-2.5
+  py-2.5
+  border-b-2 border-black
 }
 .navbar-t-l{
   @apply 
@@ -71,10 +73,11 @@
   shrink-0;
 }
 .navbar-b{
-  @apply w-fit h-fit 
-  px-1.5
-  py-0.5
-  pt-2
+  @apply p-2
+}
+.navbar-b.links{
+  @apply
+  flex  justify-between md:hidden
 }
 .md-only{
   @apply hidden md:block
@@ -83,7 +86,7 @@
   @apply block md:hidden
 }
 .side-bar{
-  @apply fixed left-0 top-0 z-20 
+  @apply fixed right-0 md:left-0 top-0 z-20 
   w-48 md:w-72 
   h-screen
   bg-blue-950 
@@ -212,7 +215,7 @@
   mx-auto
   p-1 md:p-2
   grid
-  grid-cols-[1.25fr_0.75fr]
+  md:grid-cols-[1.25fr_0.75fr]
   gap-10
   items-center
 }
@@ -315,9 +318,11 @@
   grid-cols-1 md:grid-cols-4
   gap-4
   p-1 md:p-0
+  shrink-0
 }
 .outlet-card{
-  @apply
+  @apply flex flex-row md:flex-col
+  h-27 md:h-full
   bg-white
   border
   border-black
@@ -330,8 +335,8 @@
   @apply -translate-y-1
 }
 .outlet-card >img, .image-placeholder{
-  @apply w-full
-  h-42.5
+  @apply w-27 md:w-full
+  h-full md:h-42.5
   object-fill
 }
 .image-placeholder,
@@ -343,7 +348,7 @@
   text-[50px]
 }
 .card-body{
-  @apply p-3.75
+  @apply flex-1 p-3.75
 }
 .card-body h3{
   @apply m-0 text-[17px]
@@ -441,26 +446,28 @@
 }
 
 /* MENUITEM-CARD */
+.menuItem-info{
+  @apply p-1.5
+}
 .menuItem-card{
   @apply 
   grid
-  grid-cols-[1fr_120px]
+  grid-cols-[120px_1fr]
   gap-4
   bg-white
   border
   border-[#eee4dc]
   rounded-xl
-  p-3.5
+  p-3 md:p-3.5
 }
 .menuItem-card h3{
   @apply my-0.75
-  mb-1.75
   font-bold
 }
 .menuItem-card p{
   @apply text-slate-600
   text-[13px]
-  py-3
+  py-1 md:py-3
 }
 .menuItem-card img,
 .food-placeholder{
@@ -469,6 +476,11 @@
   h-30
   rounded-2xl
   object-cover
+}
+.item-price{
+  @apply flex 
+  items-center 
+  justify-between
 }
 .menuItem-grid{
   @apply
@@ -793,4 +805,26 @@
   @apply bg-orange-600
   text-white
   border-orange-700
+}
+.nav-link{
+  @apply flex
+  items-center gap-3
+  p-3
+  rounded-lg 
+  font-semibold
+  text-slate-400
+}
+.nav-link:hover,
+.nav-link:active{
+  @apply bg-slate-800
+  text-white
+}
+.nav-link:last-child{
+  @apply
+  mt-50
+  bg-white
+  text-black
+  font-extrabold 
+  flex-row-reverse 
+  justify-end
 }

@@ -4,6 +4,12 @@ import { useAuth } from "../../context/useAuth";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../context/useCart";
 
+  const userLinks = [
+    {to:"/",label:"Dashboard"},
+    {to:"/outlets",label:"Outlets"},
+    {to:"/menu",label:"Menu Items"},
+    {to:"/orders",label:"Orders"}
+  ]
 const Navbar = ({ openSidebar }) => {
   const { token, logout } = useAuth();
   const { totalItems } = useCart();
@@ -18,7 +24,7 @@ const Navbar = ({ openSidebar }) => {
               </button>
             ) : (
               <NavLink to="/">
-                <img src="/FS1.svg" />
+                <img src="/FS13.svg" />
               </NavLink>
             )}
           </div>
@@ -56,8 +62,18 @@ const Navbar = ({ openSidebar }) => {
             )}
           </div>
         </div>
-      <div className=" navbar-b mobile-only">
-        <h1>what is that</h1>
+      <div className=" navbar-b links">
+        {
+          userLinks.map(
+            ({to,label})=>(
+              <NavLink
+              to={to}
+              >
+                <span>{label}</span>
+              </NavLink>
+            )
+          )
+        }
       </div>
     </div>
   );
