@@ -38,9 +38,9 @@ const Cart = () => {
                         const outletId = typeof group.outlet === "object"?group.outlet._id : group.outlet;
                         const outletName = typeof group.outlet === "object"? group.outlet.name : "Outlet"
                         return (
-                            <div className='cart'>
+                            <div className='cart' key={outletId}>
                                 <h2>{outletName}</h2>
-                                <div className="cart-layout" key={outletId}>
+                                <div className="cart-layout" >
                                     <div>
 
                                         {

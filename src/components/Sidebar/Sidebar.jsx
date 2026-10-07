@@ -6,12 +6,12 @@ const Sidebar = ({open,CloseSidebar}) => {
   const {logout} = useAuth();
   const {totalItems} = useCart();
   const userLinks = [
-    {to:"/",label:"Dashboard",icon:LayoutDashboard},
-    {to:"/outlets",label:"Outlets",icon:Store},
-    {to:"/menu",label:"Menu Items",icon:Utensils},
-    {to:"/cart",label:`Cart Items ${totalItems}`,icon:ShoppingBag},
-    {to:"/orders",label:"Orders",icon:ListOrdered},
-    {logout,label:"logout",icon:LogOut}
+    {id:"dashboard",to:"/",label:"Dashboard",icon:LayoutDashboard},
+    {id:"outlets",to:"/outlets",label:"Outlets",icon:Store},
+    {id:"items",to:"/menu",label:"Menu Items",icon:Utensils},
+    {id:"cart",to:"/cart",label:`Cart Items ${totalItems}`,icon:ShoppingBag},
+    {id:"orders",to:"/orders",label:"Orders",icon:ListOrdered},
+    {id:"logout", logout,label:"logout",icon:LogOut}
   ]
   return ( // controling with css 
     <>
@@ -25,9 +25,9 @@ const Sidebar = ({open,CloseSidebar}) => {
             <nav>
               {
                 userLinks.map(
-                  ({to,label,icon:Icon,logout})=>(
+                  ({id,to,label,icon:Icon,logout})=>(
                     <NavLink 
-                    key={to}
+                    key={id}
                     to={to}
                     className = {({isActive})=> isActive ?"nav-link active":"nav-link"}
                     onClick={logout ? ()=>{logout();CloseSidebar();} : CloseSidebar}

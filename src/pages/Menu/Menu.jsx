@@ -16,6 +16,7 @@ const Menu = () => {
             (async ()=>{
                 try {
                     const response = outletId?  await menuItemService.byOutlet(outletId): await menuItemService.getAll();
+                    console.log(response)
                     setItems(response.menuItems)
                 } catch (error) {
                     setError(getErrorMessage(error));

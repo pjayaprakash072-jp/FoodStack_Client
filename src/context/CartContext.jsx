@@ -184,10 +184,10 @@ const groupedItems = useMemo(
     ()=>{
         return items.reduce(
             (groups,item)=>{
-                const outletId = typeof item.outlet === "object" ? item.outlet._id : item.outlet;
-                // if(!outletId){
-                //     return groups;
-                // }
+                const outletId = item.outlet &&  typeof item.outlet === "object" ? item.outlet._id : item.outlet;
+                if(!outletId){
+                    return groups;
+                }
                 if(!groups[outletId]){
                     groups[outletId] = {
                         outlet: item.outlet,
@@ -207,7 +207,7 @@ const getItemsByOutlet =useCallback (
     (outletId) =>{
         return items.filter(
             (item)=>{
-                const itemOutletId = typeof item.outlet === "object" ? item.outlet._id: item.outlet;
+                const itemOutletId = item.outlet &&  typeof item.outlet === "object" ? item.outlet._id: item.outlet;
                 return String(itemOutletId) === String(outletId)
             }
         )
@@ -219,7 +219,7 @@ const clearOutletcart = useCallback(async(outletId)=>{
             (current)=>
                 current.filter(
                     (item)=>{
-                        const itemOutletId = typeof item.outlet === "object"? item.outlet._id : item.outlet;
+                        const itemOutletId = item.outlet &&  typeof item.outlet === "object"? item.outlet._id : item.outlet;
                         return String(itemOutletId) !== String(outletId)
                     }
                 )
@@ -235,7 +235,7 @@ const clearOutletcart = useCallback(async(outletId)=>{
             (current)=>
                 current.filter(
                     (item)=>{
-                        const itemOutletId = typeof item.outlet === "object"? item.outlet._id : item.outlet;
+                        const itemOutletId = item.outlet&& typeof item.outlet === "object"? item.outlet._id : item.outlet;
                         return String(itemOutletId) !== String(outletId)
                     }
                 )

@@ -67,6 +67,7 @@ const Navbar = ({ openSidebar }) => {
           userLinks.map(
             ({to,label})=>(
               <NavLink
+              key={to}
               to={to}
               >
                 <span>{label}</span>
