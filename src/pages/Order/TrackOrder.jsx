@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import orderService from '../../services/orderService';
 import { getErrorMessage } from '../../utils/api';
 import Loader from '../../components/Common/Loader';
+import socket from './../../services/socket';
 const TrackOrder = () => {
     const {orderId} = useParams();
     const [order,setOrder] = useState(null);
@@ -14,13 +15,37 @@ const TrackOrder = () => {
             (async()=>{
                 try {
                     const response = await orderService.getOne(orderId);
-                    setOrder(response.order)
+                    const currentOrder = response.order
+                    setOrder(currentOrder)
+                    if(!socket.connected) {
+                        socket.connect();
+                    }
+                    socket.emit("join-order",orderId);
+                    socket.on("order-status-updated",(data)=>{
+                        console.log(data)
+                        if(String(data.orderId )=== String(orderId)){
+                            setOrder(
+                                (prev)=>(
+                                    {
+                                        ...prev,
+                                        orderStatus:data.orderStatus
+                                        //paymentStatus:data.paymentStatus
+                                    }
+                                )
+                            )
+                        }
+                    })
                 } catch (error) {
                     setError(getErrorMessage(error));
                 }finally{
                     setBusy(false);
                 }
             })()
+            return ()=>{
+                socket.off("order-status-updated");
+                socket.emit("leave-order",orderId)
+                socket.disconnect();
+            }
         },[orderId]
     )
     if(busy) return <Loader label='Tracking the order'/>
