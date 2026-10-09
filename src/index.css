@@ -774,9 +774,9 @@
 }
 /* STATUS-STEPS */
 .status-steps{
-  @apply flex
+  @apply flex flex-wrap
   justify-between
-  gap-2
+  gap-15 md:gap-2
   my-10
 }
 .status-step{

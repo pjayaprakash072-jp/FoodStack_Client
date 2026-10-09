@@ -97,7 +97,7 @@ const Profile = () => {
                             onChange={change}
                             />
                         </label>
-                        <label>
+                        {/* <label>
                             Image
                             <input 
                             type="file"
@@ -106,7 +106,7 @@ const Profile = () => {
                             disabled
                             onChange={change}
                             />
-                        </label>
+                        </label> */}
                     <button className="button primary submitbtn grid-span-2">{busy ? "Saving changes..." : "Save changes"}</button>
                     </form>
                 )
