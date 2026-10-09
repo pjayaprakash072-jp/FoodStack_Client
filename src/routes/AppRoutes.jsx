@@ -17,6 +17,7 @@ import SelectAdderss from "../pages/Checkout/SelectAdderss.jsx";
 import Payment from "../pages/Checkout/Payment.jsx";
 import Orders from "../pages/Order/Orders.jsx";
 import TrackOrder from "../pages/Order/TrackOrder.jsx";
+import VerifyEmail from "../pages/Auth/VerifyEmail.jsx";
 
 function GuestOnly(){
   const {isAuthenticated} = useAuth();
@@ -49,6 +50,7 @@ const AppRoutes = () => {
       <Route element={<GuestOnly/>}>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
+        <Route path="/verify-email/:verificationToken" element={<VerifyEmail/>}/>
       </Route>
       <Route element={<Public/>}>
         <Route path="/" element={<Dashboard/>}/>
