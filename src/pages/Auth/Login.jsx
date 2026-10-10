@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useAuth } from "../../context/useAuth"
 import { useNavigate } from "react-router-dom";
 import { getErrorMessage } from "../../utils/api";
+import ReCAPTCHA from "react-google-recaptcha";
 
 
 const initial = {
@@ -9,6 +10,7 @@ const initial = {
   password:""
 }
 const Login = () => {
+  const captchaRef = useRef(null);
   const {login} = useAuth();
   const [form,setForm] = useState(initial);
   const [error,setError] = useState("");
@@ -22,11 +24,16 @@ const Login = () => {
 
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    
     setError("");
-    setBusy(true);
+    const captchaToken = captchaRef.current?.getValue();
+    if(!captchaToken){
+      setError("Please complete the CAPTCHA")
+      return;
+    }
+    
     try {
-      const response = await login(form);
+      setBusy(true);
+      const response = await login({...form,captchaToken});
       console.log("Login successfull!" , response);
       
       navigate("/dashboard");
@@ -66,6 +73,10 @@ const Login = () => {
               onChange={change}
               />
             </label>
+            <ReCAPTCHA
+            ref ={captchaRef}
+            sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+            />
             <button className="button primary submitbtn" type="submit">{busy? "Login...":"Login"}</button>
           </form>
         </div>
