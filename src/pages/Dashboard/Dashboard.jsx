@@ -36,7 +36,7 @@ const Dashboard = () => {
             
           </div>
         </div>
-        <div className="hero-art md-only">
+        <div className="hero-art">
         <UtensilsCrossed size={100}/>
         <span>🍕</span>
         <span>🍔</span>

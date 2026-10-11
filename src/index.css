@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   /* Custom colors */
@@ -23,7 +24,8 @@
 /* Global defaults */
 :root {
   @apply font-inter
-  bg-[#fffaf6]
+  bg-[#fffaf6] 
+  dark:bg-gray-900
 }
 
 /* Default h1 */
@@ -355,6 +357,7 @@
 }
 .card-body p{
   @apply text-[13px]
+  line-clamp-2
   leading-normal
   min-h-9.5 
 }

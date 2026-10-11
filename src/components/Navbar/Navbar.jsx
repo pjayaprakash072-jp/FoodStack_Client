@@ -3,6 +3,7 @@ import { Menu, LogOut, UserCircle, ShoppingBag } from "lucide-react";
 import { useAuth } from "../../context/useAuth";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../context/useCart";
+import { useEffect, useState } from "react";
 
   const userLinks = [
     {to:"/",label:"Dashboard"},
@@ -13,6 +14,17 @@ import { useCart } from "../../context/useCart";
 const Navbar = ({ openSidebar }) => {
   const { token, logout } = useAuth();
   const { totalItems } = useCart();
+  const [dark,setDark] = useState(
+    ()=>{
+      return localStorage.getItem("theme") === "dark";
+    }
+  );
+  useEffect(
+    ()=>{
+      document.documentElement.classList.toggle("dark",dark);
+      localStorage.setItem("theme" , dark? "dark":"light")
+    },[dark]
+  )
 
   return (
     <div className="navbar">
@@ -31,6 +43,9 @@ const Navbar = ({ openSidebar }) => {
           <div className="navbar-search">{/* <SearchBar /> */}<h1>FoodStack</h1></div>
 
           <div className="navbar-t-r">
+            <button 
+            onClick={()=>setDark(!dark)}
+            className="button">{dark? "☀️":"🌙"}</button>
             <NavLink to="/menu" className="md-only">Items</NavLink>
             <NavLink to="/outlets" className="md-only">Outlets</NavLink>
             <NavLink to="/cart" className="cart-link">
