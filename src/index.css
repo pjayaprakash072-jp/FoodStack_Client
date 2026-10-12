@@ -225,12 +225,14 @@
   @apply text-[12px]
   tracking-[2px]
   font-extrabold
+  dark:text-white
 }
 .hero h1{
   @apply text-[62px]
   leading-[1.02]
   tracking-[-3px]
   my-3.5
+dark:text-white
 }
 .hero h1 em{
   @apply not-italic 
@@ -248,8 +250,8 @@
 .hero-art{
   @apply h-90 hidden md:block
   rounded-3xl
-  bg-amber-200
-  text-orange-500
+  bg-amber-200 dark:bg-amber-950
+  text-orange-500 dark:text-orange-400
   grid
   place-items-center
   relative
