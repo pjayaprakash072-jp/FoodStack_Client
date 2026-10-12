@@ -241,6 +241,7 @@ dark:text-white
   @apply text-[18px]
   leading-[1.7]
   max-w-152.5
+  dark:text-white
 }
 .hero-actions{
   @apply flex gap-3 
@@ -309,6 +310,7 @@ dark:text-white
   tracking-normal
   text-3xl
   font-bold
+  dark:text-white
 }
 .section-heading >a{
   @apply flex
@@ -327,7 +329,7 @@ dark:text-white
 .outlet-card{
   @apply flex flex-row md:flex-col
   h-27 md:h-full
-  bg-white
+  bg-white dark:bg-black dark:text-white
   border
   border-black
   rounded-2xl
@@ -459,7 +461,7 @@ dark:text-white
   grid
   grid-cols-[120px_1fr]
   gap-4
-  bg-white
+  bg-white dark:bg-black dark:text-white
   border
   border-[#eee4dc]
   rounded-xl
