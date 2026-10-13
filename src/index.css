@@ -317,6 +317,7 @@ dark:text-white
   items-center
   gap-1
   font-[750]
+  dark:text-white
 }
 .outlet-grid{
   @apply mt-4
