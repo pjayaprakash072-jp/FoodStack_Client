@@ -91,8 +91,9 @@
   @apply fixed right-0 md:left-0 top-0 z-20 
   w-48 md:w-72 
   h-screen
-  bg-blue-950 
-  text-white p-3 
+  bg-[#fffaf6] dark:bg-midnight
+  text-midnight
+  p-3 
   transform transition-transform duration-300 ease-in-out
   flex flex-col
   
