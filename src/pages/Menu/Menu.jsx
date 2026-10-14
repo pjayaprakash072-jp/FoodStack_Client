@@ -5,12 +5,12 @@ import { getErrorMessage } from "../../utils/api";
 import Loader from "../../components/Common/Loader"
 import MenuItemCard from "../../components/Card/MenuItemCard";
 import EmptyState from "../../components/Common/EmptyState";
+import {toast} from "sonner"
 const Menu = () => {
     const [params] = useSearchParams();
     const outletId = params.get("outlet")
     const [items,setItems] = useState([]);
     const [busy,setBusy] = useState(true);
-    const [error,setError]= useState("");
     useEffect(
         ()=>{
             (async ()=>{
@@ -19,7 +19,7 @@ const Menu = () => {
                     console.log(response)
                     setItems(response.menuItems)
                 } catch (error) {
-                    setError(getErrorMessage(error));
+                    toast.error(getErrorMessage(error));
                 }finally{
                     setBusy(false)
                 }
@@ -36,7 +36,6 @@ const Menu = () => {
                 <h1>Waht would you like ?</h1>
             </div>
         </div>
-        {error && <div className="error">{error}</div>}
         {
             items.length ?(
                 <div className="menuItem-grid">

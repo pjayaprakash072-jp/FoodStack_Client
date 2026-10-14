@@ -6,13 +6,13 @@ import { getErrorMessage } from "../../utils/api";
 import Loader from "../../components/Common/Loader";
 import OutletCard from "../../components/Card/OutletCard";
 import EmptyState from './../../components/Common/EmptyState';
+import {toast} from "sonner"
 
 const arr = (x)=> Array.isArray(x)? x:x.outlets || [];
 
 const OutletList = ({compact}) => {
     const [outlets,setOutlets] = useState([]);
     const [busy,setBusy] = useState(true);
-    const [error,setError] = useState("");
     const [params] = useSearchParams();
     const [search,setSearch] = useState( params.get("search") ||"");
 
@@ -22,7 +22,7 @@ const OutletList = ({compact}) => {
                 const response = await outletService.getAll();
                 setOutlets(arr(response))
             }catch(error){
-                setError(getErrorMessage(error))
+                toast.error(getErrorMessage(error))
             }
             finally {
                 setBusy(false)
@@ -54,7 +54,6 @@ const OutletList = ({compact}) => {
                 />
             )
         }
-        {error && <div className="error">{error}</div>}
         {
             filtered.length ? (
                 <div className="outlet-grid">

@@ -123,7 +123,7 @@
 .button.primary
 {
   @apply 
-  bg-slate-900 hover:bg-slate-700
+  bg-slate-900 hover:bg-slate-700 dark:bg-black
   text-white 
 }
 .button.danger{
@@ -147,6 +147,7 @@
   rounded-xl 
   px-3 py-2 md:py-1
   gap-3 ring-2
+  md:flex-1
 }
 .search input{
   @apply 
@@ -205,7 +206,7 @@
 .form input{
   @apply w-full
   px-3 py-3
-  bg-white
+  bg-white dark:text-black
   outline-none
   rounded-xl
   ring-1
@@ -229,9 +230,10 @@
   dark:text-white
 }
 .hero h1{
-  @apply text-[62px]
+  @apply text-[42px] md:text-[62px]
+  text-center md:text-start
   leading-[1.02]
-  tracking-[-3px]
+  tracking-[3px] md:tracking-[-3px]
   my-3.5
 dark:text-white
 }
@@ -247,7 +249,9 @@ dark:text-white
 .hero-actions{
   @apply flex gap-3 
   mt-4.5
-
+}
+.hero-actions>a{
+  @apply flex-1
 }
 .hero-art{
   @apply h-90 hidden md:block
@@ -282,7 +286,7 @@ dark:text-white
 .hero-search a{
   @apply 
   text-white
-  bg-black
+  bg-slate-900  dark:bg-black
   px-4.5
   py-3
   rounded-lg
@@ -836,4 +840,7 @@ dark:text-white
   font-extrabold 
   flex-row-reverse 
   justify-end
+}
+.error{
+  @apply text-red-700
 }

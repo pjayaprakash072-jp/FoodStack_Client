@@ -4,11 +4,11 @@ import { getErrorMessage } from "../../utils/api";
 import Loader from '../../components/Common/Loader'
 import { Link } from "react-router-dom";
 import EmptyState from './../../components/Common/EmptyState';
+import {toast} from "sonner"
 
 const Orders = () => {
     const [orders,setOrders] = useState([]);
     const [busy,setBusy] = useState(true);
-    const [error,setError] = useState("");
     useEffect(
         ()=>{
             (async ()=>{
@@ -16,7 +16,7 @@ const Orders = () => {
                     const response = await orderService.getall();
                     setOrders(response.orders)
                 } catch (error) {
-                    setError(getErrorMessage(error));
+                    toast.error(getErrorMessage(error));
                 }finally{
                     setBusy(false)
                 }
@@ -28,7 +28,6 @@ const Orders = () => {
     <section className="section">
         <span className="eyebrow">HISTORY</span>
         <h1>Your orders</h1>
-        {error && <div className="error">{error}</div>}
         {
             orders.length?(
                 <div className="order-list">

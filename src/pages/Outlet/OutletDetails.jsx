@@ -4,13 +4,13 @@ import outletService from "../../services/outletService";
 import { getErrorMessage } from "../../utils/api";
 import Loader from "../../components/Common/Loader";
 import { ArrowLeft, Clock3, MapPin, Star } from "lucide-react";
+import {toast} from "sonner"
 
 
 
 const OutletDetails = () => {
     const {id} = useParams();
     const [outlet,setOutlet] = useState(null);
-    const [error,setError] = useState("");
     const [busy,setBusy] = useState(true);
 
     useEffect(
@@ -20,7 +20,7 @@ const OutletDetails = () => {
                     const response = await outletService.getOne(id);
                     setOutlet(response.outlet)
                 } catch (error) {
-                    setError(getErrorMessage(error))
+                    toast.error(getErrorMessage(error))
                 }finally{
                     setBusy(false);
                 }
@@ -32,7 +32,7 @@ const OutletDetails = () => {
   return (
     <section className="section">
         <Link to="/outlets" className="back-link"><ArrowLeft size={17}/>Outlets</Link>
-        {error && <div className="error">{error}</div>}
+        {/* {error && <div className="error">{error}</div>} */}
         <div className="outlet-detail">
             {
                 image ? (
