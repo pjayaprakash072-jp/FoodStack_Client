@@ -3,6 +3,7 @@ import { useAuth } from "../../context/useAuth"
 import { useNavigate } from "react-router-dom";
 import { getErrorMessage } from "../../utils/api";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Eye, EyeOff } from "lucide-react";
 
 
 const initial = {
@@ -14,6 +15,7 @@ const Login = () => {
   const {login} = useAuth();
   const [form,setForm] = useState(initial);
   const [error,setError] = useState("");
+  const [showPassword,setShowPassword]= useState(false)
   const [busy,setBusy] = useState(false);
   const navigate = useNavigate();
   const change = (e)=>{
@@ -66,14 +68,22 @@ const Login = () => {
             </label>
             <label>
               Password 
+              <div className="password-container">
               <input
-              type="password"
+              type={showPassword?"text":"password"}
               name="password"
               placeholder="password"
               onChange={change}
               />
+              <button
+              onClick={()=>setShowPassword(!showPassword)}
+              type="button">
+                {showPassword ? <EyeOff size={18}/> : <Eye size={18}/>}
+              </button>
+              </div>
             </label>
             <ReCAPTCHA
+            className="captcha"
             ref ={captchaRef}
             sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
             />
