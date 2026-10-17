@@ -1,6 +1,6 @@
 import { useState } from "react"
 import userService from './../../services/userService';
-import { Link,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getErrorMessage } from "../../utils/api";
 
 const initial = {
@@ -9,7 +9,7 @@ const initial = {
   password:"",
   phone:""
 }
-const Registere = () => {
+const Register = ({openLog}) => {
 
 const [form,setForm] = useState(initial);
 const [error,setError] = useState("");
@@ -36,13 +36,6 @@ const submit = async (e)=>{
 }
 
   return (
-      <div className="auth-page">
-        <div className="auth-card wide">
-          <div className="head">
-            <h1>Welcomet Back</h1>
-            <p>Login</p>
-          </div>
-          {error && <div className="error">{error}</div>}
           <form className="form grid-2"  onSubmit={submit}>
             <label>
               Name 
@@ -80,14 +73,13 @@ const submit = async (e)=>{
               onChange={update}
               />
             </label>
+            {error && <div className="error">{error}</div>}
             <button className="button primary submitbtn grid-span-2" type="submit" disabled={busy} >{busy?"Creating...":"Create Account"}</button>
+            <p>
+              Already registered? <button className="cursor-pointer" onClick={openLog}>login</button>
+            </p>
           </form>
-          <p>
-            Already registered? <Link to="/login">Login</Link>
-          </p>
-        </div>
-      </div>
   )
 }
 
-export default Registere
+export default Register

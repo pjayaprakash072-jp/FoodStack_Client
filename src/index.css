@@ -33,8 +33,33 @@
   @apply flex justify-between
 }
 .navbar{
-  @apply sticky top-0 left-0 right-0 z-10
+  @apply sticky top-0 left-0 right-0 z-[40]
   bg-amber-400 dark:bg-amber-950 dark:text-white
+}
+.modal-backdrop{
+  @apply fixed inset-0
+  bg-slate-700/50
+  grid
+  place-items-center
+  z-[60]
+}
+.modal{
+  @apply bg-white dark:bg-slate-950
+  p-5 
+  rounded-2xl
+  w-fit
+  h-fit
+  z-[100]
+}
+.modal-header{
+  @apply flex items-center justify-between
+}
+.modal-header>h3{
+  @apply 
+  font-extrabold
+  md:text-2xl
+  uppercase
+  tracking-[3px]
 }
 .navbar-t{
   @apply 
@@ -198,7 +223,7 @@
 }
 .form label{
   @apply grid
-  gap-2 font-bold
+  gap-2 font-bold 
 }
 .label-e{
   @apply flex justify-between
@@ -226,6 +251,7 @@
 .form>.captcha{
   @apply w-full flex justify-center
 }
+
 .hero{
   @apply max-w-295 
   mx-auto

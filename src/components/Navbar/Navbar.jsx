@@ -4,6 +4,9 @@ import { useAuth } from "../../context/useAuth";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../../context/useCart";
 import { useEffect, useState } from "react";
+import Modal from "../Common/Modal";
+import Login from "../../pages/Auth/Login";
+import Register from "../../pages/Auth/Register";
 
   const userLinks = [
     {to:"/",label:"Dashboard"},
@@ -14,6 +17,8 @@ import { useEffect, useState } from "react";
 const Navbar = ({ openSidebar }) => {
   const { token, logout } = useAuth();
   const { totalItems } = useCart();
+  const [openLogin,setOpenLogin] = useState(false);
+  const [openRegister,setOpenRegister] = useState(false);
   const [dark,setDark] = useState(
     ()=>{
       return localStorage.getItem("theme") === "dark";
@@ -25,7 +30,14 @@ const Navbar = ({ openSidebar }) => {
       localStorage.setItem("theme" , dark? "dark":"light")
     },[dark]
   )
-
+  const loginPage =()=>{
+    setOpenLogin(true);
+    setOpenRegister(false);
+  }
+  const registerPage =()=>{
+    setOpenLogin(false);
+    setOpenRegister(true);
+  }
   return (
     <div className="navbar">
         <div className="navbar-t">
@@ -67,12 +79,8 @@ const Navbar = ({ openSidebar }) => {
               </>
             ) : (
               <>
-                <NavLink to="/login">
-                  <button className=" button">Login</button>
-                </NavLink>
-                <NavLink to="/register">
-                  <button className=" button">Register</button>
-                </NavLink>
+                  <button className=" button" onClick={loginPage}>Login</button>
+                  <button className=" button" onClick={registerPage}>Register</button>
               </>
             )}
           </div>
@@ -91,6 +99,12 @@ const Navbar = ({ openSidebar }) => {
           )
         }
       </div>
+      <Modal open={openLogin} close={()=>setOpenLogin(false)} title="Login">
+        <Login openReg = {registerPage}/>
+      </Modal>
+      <Modal open={openRegister} close={()=>setOpenRegister(false)} title="Register">
+        <Register openLog={loginPage}/>
+      </Modal>
     </div>
   );
 };
