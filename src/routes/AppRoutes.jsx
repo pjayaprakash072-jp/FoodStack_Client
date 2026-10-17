@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes ,Route,Navigate, Outlet} from "react-router-dom"
 import { useAuth } from './../context/useAuth';
+import { toast } from "sonner";
 // import Dashboard from "../pages/Dashboard/Dashboard.jsx"
 // import DashboardLayout from './../components/Layout/DashboardLayout';
 // import Login from "../pages/Auth/Login.jsx";
@@ -54,7 +55,12 @@ function Private(){
     (
       <DashboardLayout><Outlet/></DashboardLayout>
     ):(
-      <Navigate  to ="/login" replace/>
+      <>
+      {
+        toast.error("Please Login")
+      }
+      <Navigate  to ="/" replace/>
+      </>
     )
     }
 function Public(){
