@@ -68,8 +68,11 @@ const LocationPicker = ({onSelect,onClose,initialLocation}) => {
                 )
             }
         </MapContainer>
-        <button className="button" type="button" disabled={!selectedLocation} onClick={confirmLocation}>Confirm Location</button>
-        <button className="button" type="button" onClick={onClose}>Cancel</button>
+        <div className="location-choose">
+
+        <button className="button primary full" type="button" disabled={!selectedLocation} onClick={confirmLocation}>Confirm Location</button>
+        <button className="button primary full" type="button" onClick={onClose}>Cancel</button>
+        </div>
     </div>
   )
 }

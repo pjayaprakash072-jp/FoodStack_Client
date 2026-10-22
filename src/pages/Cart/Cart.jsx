@@ -64,7 +64,7 @@ const Cart = () => {
                                             <span>Total</span>
                                             <b>₹{total.toFixed(2)}</b>
                                         </div>
-                                        <Link className="button primary" to={`/checkout/${outletId}`}>
+                                        <Link className="button primary full" to={`/checkout/${outletId}`}>
                                         Proceed to Checkout
                                         <ArrowRight/>
                                         </Link>

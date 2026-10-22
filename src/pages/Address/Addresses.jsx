@@ -45,9 +45,7 @@ const Addresses = () => {
                 <span className="eyebrow">PROFILE</span>
                 <h1>Addresses</h1>
             </div>
-            <Link className="button primary" to="/profile/addaddress">
-            Add
-            </Link>
+
         </div>
         {error && <div className="error">{error}</div>}
         {
@@ -72,7 +70,11 @@ const Addresses = () => {
                 <EmptyState
                 title="No saved Address"
                 text="Add your first delivery Address"
-                />
+                >
+            <Link className="button primary" to="/profile/addaddress">
+            Add
+            </Link>
+                </EmptyState>
             )
         }
     </section>

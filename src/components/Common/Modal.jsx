@@ -9,7 +9,7 @@ const Modal = ({children,title,open,close}) => {
                 <div></div>
                 <h3>{title}</h3>
                 <button className="icon-button" onClick={close}>
-                    <X/>
+                    <X size={15}/>
                 </button>
             </div>
             {children}
