@@ -4,9 +4,11 @@ import {AuthProvider} from "./context/AuthContext"
 import { CartProvider } from './context/CartContext'
 import { LocationProvider } from './context/LocationContext'
 import { CheckoutProvicer } from './context/CheckoutContext'
+import { OpenModalProvicer } from './context/OpenModal'
 const App = () => {
   return (
     <BrowserRouter>
+    <OpenModalProvicer>
       <AuthProvider>
           <LocationProvider>
                 <CartProvider>
@@ -16,6 +18,7 @@ const App = () => {
                 </CartProvider>
           </LocationProvider>
       </AuthProvider>
+    </OpenModalProvicer>
     </BrowserRouter>
   )
 }

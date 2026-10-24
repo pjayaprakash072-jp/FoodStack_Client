@@ -1,7 +1,7 @@
 import { useState } from "react"
 import userService from './../../services/userService';
-import { useNavigate } from 'react-router-dom';
 import { getErrorMessage } from "../../utils/api";
+import useOpenModal from "../../context/useOpenModal";
 
 const initial = {
   name:"",
@@ -10,11 +10,10 @@ const initial = {
   phone:""
 }
 const Register = ({openLog}) => {
-
+const {loginPage} = useOpenModal();
 const [form,setForm] = useState(initial);
 const [error,setError] = useState("");
 const [busy,setBusy] = useState(false);
-const navigate = useNavigate();
 const update = (e)=>setForm(
   {
     ...form,[e.target.name]:e.target.value
@@ -26,8 +25,9 @@ const submit = async (e)=>{
   setError("");
   setBusy(true);
   try{
-    await userService.register(form);
-    navigate("/login")
+    const response = await userService.registerAuth(form);
+    await userService.create(response.userAuth?._id,form);
+    loginPage();
   }catch(error){
     setError(getErrorMessage(error));
   }finally{

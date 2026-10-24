@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getErrorMessage } from "../../utils/api";
 import ReCAPTCHA from "react-google-recaptcha";
 import { Eye, EyeOff } from "lucide-react";
+import useOpenModal from "../../context/useOpenModal";
 
 
 const initial = {
@@ -13,6 +14,7 @@ const initial = {
 const Login = ({openReg}) => {
   const captchaRef = useRef(null);
   const {login} = useAuth();
+  const {closeLogReg}= useOpenModal();
   const [form,setForm] = useState(initial);
   const [error,setError] = useState("");
   const [showPassword,setShowPassword]= useState(false)
@@ -37,7 +39,7 @@ const Login = ({openReg}) => {
       setBusy(true);
       const response = await login({...form,captchaToken});
       console.log("Login successfull!" , response);
-      
+      closeLogReg();
       navigate("/dashboard");
     } catch (error) {
       setError(getErrorMessage(error));

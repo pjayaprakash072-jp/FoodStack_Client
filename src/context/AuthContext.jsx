@@ -23,10 +23,11 @@ export function AuthProvider({children}){
         }else{
             throw new Error("No token is received from the server");
         }
-        if(result.user){
-            updateUser(result.user)
+        const userResponse = await userService.getOne(result.userAuth?._id);
+        if(userResponse.user){
+            updateUser(userResponse.user)
         }
-        return result;
+        return userResponse;
     }
     const logout = ()=>{
         clearAuth();

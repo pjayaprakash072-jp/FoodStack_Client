@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Modal from "../Common/Modal";
 import Login from "../../pages/Auth/Login";
 import Register from "../../pages/Auth/Register";
+import useOpenModal from './../../context/useOpenModal';
 
   const userLinks = [
     {to:"/",label:"Dashboard"},
@@ -17,8 +18,7 @@ import Register from "../../pages/Auth/Register";
 const Navbar = ({ openSidebar }) => {
   const { token, logout } = useAuth();
   const { totalItems } = useCart();
-  const [openLogin,setOpenLogin] = useState(false);
-  const [openRegister,setOpenRegister] = useState(false);
+  const {openLogin,openRegister,setOpenLogin,setOpenRegister,loginPage,registerPage} = useOpenModal();
   const [dark,setDark] = useState(
     ()=>{
       return localStorage.getItem("theme") === "dark";
@@ -30,14 +30,7 @@ const Navbar = ({ openSidebar }) => {
       localStorage.setItem("theme" , dark? "dark":"light")
     },[dark]
   )
-  const loginPage =()=>{
-    setOpenLogin(true);
-    setOpenRegister(false);
-  }
-  const registerPage =()=>{
-    setOpenLogin(false);
-    setOpenRegister(true);
-  }
+
   return (
     <div className="navbar">
         <div className="navbar-t">
