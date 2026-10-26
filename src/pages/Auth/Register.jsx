@@ -75,7 +75,7 @@ const submit = async (e)=>{
             </label>
             {error && <div className="error">{error}</div>}
             <button className="button primary submitbtn grid-span-2" type="submit" disabled={busy} >{busy?"Creating...":"Create Account"}</button>
-            <p>
+            <p className="grid-span-2">
               Already registered? <button className="cursor-pointer" onClick={openLog}>login</button>
             </p>
           </form>

@@ -84,9 +84,9 @@ const Login = ({openReg}) => {
               />
           {error && <div className="error">{error}</div>}
               <button className="button primary submitbtn" type="submit">{busy? "Login...":"Login"}</button>
-            <p>
-              don't have Account ? <button className="cursor-pointer" onClick={openReg}>Register</button>
-            </p>
+              <p>
+                Don't have Account ? <button className="cursor-pointer" onClick={openReg}>Register</button>
+              </p>
             </form>
   )
 }

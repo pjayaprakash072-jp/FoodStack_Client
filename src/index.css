@@ -255,11 +255,14 @@
   focus:border-blue-500
   focus:ring-2 focus:ring-blue-200
 }
+.form > p:last-child{
+  @apply text-center
+}
 .checkbox{
   @apply flex  justify-center gap-5
 }
 .checkbox>input{
-  @apply w-[20px]
+  @apply w-5
 }
 .password-container{
   @apply
