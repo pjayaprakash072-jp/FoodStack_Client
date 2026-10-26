@@ -589,6 +589,9 @@ dark:text-white
   @apply text-slate-500
   mb-1.25
 }
+.empty-actions{
+  @apply flex w-[30%] justify-between
+}
 
 /* NOTFOUND */
 .not-found{

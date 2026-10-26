@@ -16,8 +16,10 @@ const Cart = () => {
                 title ="Your cart is Empty"
                 text="Add somethign delicious from a outlets."
                 >
-
-                <Link className="button primary" to="/outlets">Browse outlet</Link>
+                    <div className='empty-actions'>
+                        <Link className="button primary" to="/outlets">Browse outlet</Link>
+                        <Link className="button primary" to="/menu">Browse Items</Link>
+                    </div>
                 </EmptyState>
             </div>
         )
