@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import userService from './../../services/userService';
 import { getErrorMessage } from "../../utils/api";
 import useOpenModal from "../../context/useOpenModal";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const initial = {
   name:"",
@@ -14,6 +15,7 @@ const {loginPage} = useOpenModal();
 const [form,setForm] = useState(initial);
 const [error,setError] = useState("");
 const [busy,setBusy] = useState(false);
+const captahaRef = useRef(null);
 const update = (e)=>setForm(
   {
     ...form,[e.target.name]:e.target.value
@@ -24,8 +26,14 @@ const submit = async (e)=>{
   e.preventDefault();
   setError("");
   setBusy(true);
+  const captchaToken = captahaRef.current?.getValue();
+  if(!captchaToken){
+    setError("Please complte the CAPTCHA");
+    setBusy(false);
+    return;
+  }
   try{
-    const response = await userService.registerAuth(form);
+    const response = await userService.registerAuth({...form,captchaToken});
     await userService.create(response.userAuth?._id,form);
     loginPage();
   }catch(error){
@@ -71,6 +79,12 @@ const submit = async (e)=>{
               name="phone"
               placeholder="phone"
               onChange={update}
+              />
+            </label>
+            <label className="grid-span-2">
+              <ReCAPTCHA
+              ref = {captahaRef}
+              sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
               />
             </label>
             {error && <div className="error">{error}</div>}

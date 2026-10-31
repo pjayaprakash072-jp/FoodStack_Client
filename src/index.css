@@ -226,7 +226,7 @@
   @apply grid-cols-1 md:grid-cols-2
 }
 .grid-span-2{
-  @apply md:col-span-2
+  @apply md:col-span-2 
 }
 .form label{
   @apply grid
@@ -237,7 +237,8 @@
 }
 .form input{
   @apply 
-  w-full
+  box-border
+  w-full min-w-0 max-w-full
   px-3 py-3
   bg-white dark:text-black
   outline-none
@@ -266,7 +267,12 @@
 }
 .password-container{
   @apply
-  flex relative items-center w-full
+  flex relative items-center w-full min-w-0
+}
+.password-container >input{
+  @apply flex-1 
+  box-border
+  min-w-0 w-full 
 }
 .password-container>button{
   @apply
@@ -274,9 +280,6 @@
   text-gray-500
   hover:text-black
   cursor-pointer
-}
-.form>.captcha{
-  @apply w-full flex justify-center
 }
 
 .hero{
