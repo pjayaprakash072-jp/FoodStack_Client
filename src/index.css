@@ -925,3 +925,28 @@ dark:text-white
 .location-top{
   @apply hidden md:flex justify-start gap-5
 }
+
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Mobile navigation safe area */
+.mobile-bottom-nav {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Top content safe area */
+.mobile-top-content {
+  padding-top: env(safe-area-inset-top);
+}

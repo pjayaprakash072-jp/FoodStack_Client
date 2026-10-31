@@ -2,7 +2,60 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/FS1.svg" />
+
+    <!-- Existing FoodStack favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="/foodstack_circle_cut_after_border.png"
+    />
+
+    <!-- Responsive layout -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- App information -->
+    <title>FoodStack</title>
+    <meta
+      name="description"
+      content="Order delicious food from your favorite restaurants with FoodStack."
+    />
+
+    <!-- PWA theme -->
+    <meta name="theme-color" content="#121063" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- iOS Home Screen support -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="FoodStack" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <!-- iOS Home Screen icon -->
+    <link
+      rel="apple-touch-icon"
+      href="/apple-touch-icon.png"
+    />
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <!-- Keep your existing React entry point -->
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+
+<!-- <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/foodstack_circle_cut_after_border.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>client</title>
   </head>
@@ -10,4 +63,5 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
-</html>
+</html> -->
+

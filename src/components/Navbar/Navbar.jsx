@@ -41,7 +41,7 @@ const Navbar = ({ openSidebar }) => {
               </button>
             ) : (
               <NavLink to="/">
-                <img src="/FS13.svg" />
+                <img src="/FS1.png" />
               </NavLink>
             )}
           </div>
