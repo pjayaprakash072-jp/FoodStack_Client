@@ -21,7 +21,7 @@ const Orders = () => {
                     setBusy(false)
                 }
             })();
-        },[orders]
+        },[]
     )
     if(busy) return <Loader label="Loading orders"/>
   return (

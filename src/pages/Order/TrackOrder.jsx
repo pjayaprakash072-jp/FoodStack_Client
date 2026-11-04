@@ -56,7 +56,7 @@ const TrackOrder = () => {
         {error && <div className='error'>{error}</div>}
         <div className="tracking-card">
             <OrderStatus status={`${order.orderStatus}`}/>
-            <p>Your order is preparing.</p>
+            <p>Your order is {order.orderStatus}.</p>
         </div>
         <Link to="/orders" className='button primary'>Order History</Link>
     </section>
