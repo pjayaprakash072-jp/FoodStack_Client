@@ -16,18 +16,16 @@ export function AuthProvider({children}){
 
     const login = async (credentials)=>{
         const result = await userService.login(credentials);
-        console.log(result)
         if(result.token){
             setToken(result.token);
             setAuthToken(result.token);
         }else{
             throw new Error("No token is received from the server");
         }
-        const userResponse = await userService.getOne(result.userAuth?._id);
-        if(userResponse.user){
-            updateUser(userResponse.user)
+        if(result.user){
+            updateUser(result.user)
         }
-        return userResponse;
+        return result;
     }
     const logout = ()=>{
         clearAuth();

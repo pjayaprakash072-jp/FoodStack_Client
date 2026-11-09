@@ -2,28 +2,8 @@ import { lazy, Suspense } from "react";
 import { Routes ,Route,Navigate, Outlet} from "react-router-dom"
 import { useAuth } from './../context/useAuth';
 import { toast } from "sonner";
-// import Dashboard from "../pages/Dashboard/Dashboard.jsx"
-// import DashboardLayout from './../components/Layout/DashboardLayout';
-// import Login from "../pages/Auth/Login.jsx";
-// import Register from "../pages/Auth/Register.jsx";
-// import OutletList from "../pages/Outlet/OutletList.jsx";
-// import OutletDetails from "../pages/Outlet/OutletDetails.jsx";
-// import Menu from "../pages/Menu/Menu.jsx";
-// import NotFound from "../pages/NotFound/NotFound.jsx";
-// import Cart from "../pages/Cart/Cart.jsx";
-// import Profile from "../pages/Profile/Profile.jsx";
-// import Addresses from "../pages/Address/Addresses.jsx";
-// import AddAddress from "../pages/Address/AddAddress.jsx";
-// import Checkout from "../pages/Checkout/Checkout.jsx";
-// import SelectAddress from "../pages/Checkout/SelectAddress.jsx";
-// import Payment from "../pages/Checkout/Payment.jsx";
-// import Orders from "../pages/Order/Orders.jsx";
-// import TrackOrder from "../pages/Order/TrackOrder.jsx";
-// import VerifyEmail from "../pages/Auth/VerifyEmail.jsx";
 const Dashboard = lazy(()=>import('../pages/Dashboard/Dashboard.jsx'));
 const DashboardLayout = lazy(()=>import("./../components/Layout/DashboardLayout"));
-// const Login = lazy(()=>import("../pages/Auth/Login.jsx"))
-// const Register = lazy(()=>import("../pages/Auth/Register.jsx"))
 const OutletList = lazy(()=>import("../pages/Outlet/OutletList.jsx"))
 const OutletDetails = lazy(()=>import("../pages/Outlet/OutletDetails.jsx"))
 const Menu = lazy(()=>import("../pages/Menu/Menu.jsx"))
@@ -75,8 +55,6 @@ const AppRoutes = () => {
         <Routes>
 
           <Route element={<GuestOnly/>}>
-            {/* <Route path="/login" element={<Login/>}/> */}
-            {/* <Route path="/register" element={<Register/>}/> */}
             <Route path="/verify-email/:verificationToken" element={<VerifyEmail/>}/>
           </Route>
           <Route element={<Public/>}>

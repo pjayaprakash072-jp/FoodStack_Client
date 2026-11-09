@@ -34,7 +34,7 @@ const submit = async (e)=>{
   }
   try{
     const response = await userService.registerAuth({...form,captchaToken});
-    await userService.create(response.userAuth?._id,form);
+    console.log(response.data);
     loginPage();
   }catch(error){
     setError(getErrorMessage(error));
