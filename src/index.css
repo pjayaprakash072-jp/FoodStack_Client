@@ -3,12 +3,27 @@
 
 @theme {
   /* Custom colors */
+  --color-primary:var(--color-indigo-600);
+  --color-primary-hover:var(--color-indigo-700);
+
+  --color-background:var(--color-slate-50);
+  --color-surface:var(--color-white);
+
+  --color-text-primary:var(--color-slate-900);
+  --color-text-secondary:var(--color-slate-500);
+
+  --color-border:var(--color-red-500);
+
+  --color-success:var(--color-green-600);
+  --color-danger:var(--color-red-600);
+  --color-warning:var(--color-orange-600);
+
+
   --color-midnight: #121063;
   --color-tahiti: #3ab7bf;
-  --color-bermuda: #FFFF00;
 
   /* Default font */
-  --font-inter:
+  --font-sans:
     Inter,
     ui-sans-serif,
     system-ui,
@@ -23,9 +38,9 @@
 
 /* Global defaults */
 :root {
-  @apply font-inter
+  @apply font-sans
   bg-[#fffaf6] 
-  dark:bg-gray-900
+  dark:bg-slate-950/88 
 }
 
 /* Default h1 */

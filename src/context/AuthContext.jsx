@@ -16,6 +16,7 @@ export function AuthProvider({children}){
 
     const login = async (credentials)=>{
         const result = await userService.login(credentials);
+        console.log("login result:",result);
         if(result.token){
             setToken(result.token);
             setAuthToken(result.token);

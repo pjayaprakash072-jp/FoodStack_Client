@@ -15,6 +15,7 @@ const TrackOrder = () => {
             (async()=>{
                 try {
                     const response = await orderService.getOne(orderId);
+                    console.log("order Details:",response);
                     const currentOrder = response.order
                     setOrder(currentOrder)
                     if(!socket.connected) {
