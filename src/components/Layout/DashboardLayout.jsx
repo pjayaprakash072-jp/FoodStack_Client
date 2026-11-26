@@ -5,10 +5,10 @@ import Sidebar from "../Sidebar/Sidebar"
 const DashboardLayout = ({children}) => {
     const[open,setOpen]=useState(false);// open is just a state like it is used to set state(open/close) for sidebar.
   return (
-    <div>
+    <div className="app-layout">
         <Navbar openSidebar={() => setOpen(true)}/>
         <Sidebar open={open} CloseSidebar={()=>setOpen(false)}/>
-          <main className="content">
+          <main className="app-main">
             {children}
           </main>
     </div>

@@ -13,7 +13,8 @@ import useOpenModal from './../../context/useOpenModal';
     {to:"/",label:"Dashboard"},
     {to:"/outlets",label:"Outlets"},
     {to:"/menu",label:"Menu Items"},
-    {to:"/orders",label:"Orders"}
+    {to:"/cart",label:"Cart"},
+    // {to:"/orders",label:"Orders"}
   ]
 const Navbar = ({ openSidebar }) => {
   const { token, logout } = useAuth();
@@ -32,31 +33,41 @@ const Navbar = ({ openSidebar }) => {
   )
 
   return (
-    <div className="navbar">
-        <div className="navbar-t">
-          <div className="navbar-t-l">
+    <header className="navbar">
+      <div className="navbar-body">
+          <div className="navbar-start">
             {token ? (
               <button className="button primary" onClick={openSidebar}>
                 <Menu size={19} />
               </button>
             ) : (
               <NavLink to="/">
-                <img src="/FS1.png" />
+                <img src="/FS1.png" className="navbar-logo" />
               </NavLink>
             )}
+            <strong className="navbar-title">FoodStack</strong>
           </div>
-          <div className="navbar-search">{/* <SearchBar /> */}<h1>FoodStack</h1></div>
 
-          <div className="navbar-t-r">
+          <div className="navbar-links">
             <button 
             onClick={()=>setDark(!dark)}
             className="button">{dark? "☀️":"🌙"}</button>
-            <NavLink to="/menu" className="md-only">Items</NavLink>
-            <NavLink to="/outlets" className="md-only">Outlets</NavLink>
-            <NavLink to="/cart" className="cart-link">
-              <ShoppingBag size={19} /> <span className="md-only">Cart</span>
-              {totalItems > 0 && <b>{totalItems}</b>}
-            </NavLink>
+            {
+              userLinks.map(
+                ({to,label})=>(
+                  <NavLink
+                  key={to}
+                  to={to}
+                  className={({isActive})=> `navbar-link ${label === 'Cart' ? "cart-link": isActive? "navbar-link-active":""}`}
+                  >
+                    <span>{label}</span>
+                    {label ==='Cart'? <><ShoppingBag size={19} />{totalItems > 0 && <b>{totalItems}</b>}</>:""}
+                  </NavLink>
+                )
+              )
+            }
+          </div>
+          <div className="navbar-actions">
             {token ? (
               <>
                 <button className="navbar-right-button">
@@ -64,21 +75,19 @@ const Navbar = ({ openSidebar }) => {
                     <UserCircle size={30} />
                   </NavLink>
                 </button>
-                <div className="md-only">
-                  <button className="button primary " onClick={logout}>
+                  <button type="button" className="btn btn-logout " onClick={logout}>
                     <LogOut size={19} />
+                    <span>logout</span>
                   </button>
-                </div>
               </>
             ) : (
               <>
-                  <button className=" button" onClick={loginPage}>Login</button>
-                  <button className=" button" onClick={registerPage}>Register</button>
+                  <button className="btn btn-login" onClick={loginPage}>Login</button>
+                  <button className="btn btn-reg" onClick={registerPage}>Register</button>
               </>
             )}
           </div>
-        </div>
-      <div className=" navbar-b links">
+      <div className="md:hidden">
         {
           userLinks.map(
             ({to,label})=>(
@@ -92,13 +101,14 @@ const Navbar = ({ openSidebar }) => {
           )
         }
       </div>
+      </div>
       <Modal open={openLogin} close={()=>setOpenLogin(false)} title="Login">
         <Login openReg = {registerPage}/>
       </Modal>
       <Modal open={openRegister} close={()=>setOpenRegister(false)} title="Register">
         <Register openLog={loginPage}/>
       </Modal>
-    </div>
+    </header>
   );
 };
 
